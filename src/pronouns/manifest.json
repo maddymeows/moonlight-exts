@@ -6,7 +6,6 @@
   "meta": {
     "name": "Pronouns",
     "tagline": "Show pronouns next to name in messages",
-    "description": "Does what it says",
     "authors": ["maddy"],
     "source": "https://github.com/maddymeows/moonlight-exts"
   }
