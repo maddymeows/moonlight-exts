@@ -30,7 +30,8 @@ function PronounsBadge(props: PronounsBadgeProps): React.ReactNode {
       style={{
         display: "inline-block",
         marginLeft: ".5rem",
-        fontSize: ".75rem"
+        fontSize: ".75rem",
+        lineHeight: 1
       }}
     >
       <span style={{ position: "absolute", opacity: 0, zIndex: -1 }}>{" ("}</span>
