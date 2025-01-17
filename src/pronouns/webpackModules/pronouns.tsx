@@ -29,7 +29,8 @@ function PronounsBadge(props: PronounsBadgeProps): React.ReactNode {
         display: "inline-block",
         marginLeft: ".5rem",
         fontSize: ".75rem",
-        lineHeight: 1
+        lineHeight: 1,
+        whiteSpace: "nowrap"
       }}
     >
       <span style={{ position: "absolute", opacity: 0, zIndex: -1 }}>{" ("}</span>
