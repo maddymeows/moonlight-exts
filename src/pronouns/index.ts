@@ -7,12 +7,14 @@ export const patches: ExtensionWebExports["patches"] = [];
 export const webpackModules: ExtensionWebExports["webpackModules"] = {
   pronouns: {
     dependencies: [
-      { id: "react" },
       { id: "discord/packages/flux" },
-      { id: "discord/components/common/index" },
-      { ext: "common", id: "stores" },
-      { ext: "componentEditor", id: "messages" }
+      { id: "react" },
+      { ext: "componentEditor", id: "messages" },
+      { ext: "pronouns", id: "store" }
     ],
     entrypoint: true
+  },
+  store: {
+    dependencies: [{ id: "discord/packages/flux" }, { id: "discord/Dispatcher" }]
   }
 };

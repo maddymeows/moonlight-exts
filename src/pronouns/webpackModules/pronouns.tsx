@@ -1,6 +1,6 @@
-import { UserProfileStore } from "@moonlight-mod/wp/common_stores";
 import Messages from "@moonlight-mod/wp/componentEditor_messages";
 import { useStateFromStores } from "@moonlight-mod/wp/discord/packages/flux";
+import { PronounsStore } from "@moonlight-mod/wp/pronouns_store";
 import React from "@moonlight-mod/wp/react";
 
 type PronounsBadgeProps = {
@@ -14,11 +14,9 @@ type PronounsBadgeProps = {
 
 function PronounsBadge(props: PronounsBadgeProps): React.ReactNode {
   const { pronouns } = useStateFromStores(
-    [UserProfileStore],
+    [PronounsStore],
     () => ({
-      pronouns:
-        UserProfileStore.getGuildMemberProfile(props.message.author.id, props.guildId)?.pronouns ||
-        UserProfileStore.getUserProfile(props.message.author.id)?.pronouns
+      pronouns: PronounsStore.getPronouns(props.message.author.id, props.guildId)
     }),
     [props.message.author.id, props.guildId]
   );
