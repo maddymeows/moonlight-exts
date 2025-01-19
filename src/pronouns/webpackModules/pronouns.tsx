@@ -3,7 +3,7 @@ import { useStateFromStores } from "@moonlight-mod/wp/discord/packages/flux";
 import { PronounsStore } from "@moonlight-mod/wp/pronouns_store";
 import React from "@moonlight-mod/wp/react";
 
-type PronounsBadgeProps = {
+type PronounsProps = {
   guildId: string;
   message: {
     author: {
@@ -12,7 +12,7 @@ type PronounsBadgeProps = {
   };
 };
 
-function PronounsBadge(props: PronounsBadgeProps): React.ReactNode {
+function Pronouns(props: PronounsProps): React.ReactNode {
   const { pronouns } = useStateFromStores(
     [PronounsStore],
     () => ({
@@ -32,4 +32,4 @@ function PronounsBadge(props: PronounsBadgeProps): React.ReactNode {
   );
 }
 
-Messages.addToUsername("pronouns", PronounsBadge, "username");
+Messages.addToUsername("pronouns", Pronouns, "username");

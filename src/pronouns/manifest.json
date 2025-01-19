@@ -1,14 +1,15 @@
 {
   "$schema": "https://moonlight-mod.github.io/manifest.schema.json",
   "id": "pronouns",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "apiLevel": 2,
   "dependencies": ["common", "componentEditor"],
   "meta": {
     "name": "Pronouns",
-    "tagline": "Show pronouns next to name in messages",
+    "tagline": "Show pronouns next to the name in messages",
     "authors": ["maddy"],
     "source": "https://github.com/maddymeows/moonlight-exts",
+    "tags": ["chat", "qol"],
     "changelog": "1.2: support compact mode\n1.1: cache pronouns\n1.0: the invention of pronouns"
   }
 }
