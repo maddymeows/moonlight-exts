@@ -24,15 +24,7 @@ function PronounsBadge(props: PronounsBadgeProps): React.ReactNode {
   if (!pronouns) return null;
 
   return (
-    <span
-      style={{
-        display: "inline-block",
-        marginLeft: ".5rem",
-        fontSize: ".75rem",
-        lineHeight: 1,
-        whiteSpace: "nowrap"
-      }}
-    >
+    <span className="pronouns-badge">
       <span style={{ position: "absolute", opacity: 0, zIndex: -1 }}>{" ("}</span>
       {pronouns}
       <span style={{ position: "absolute", opacity: 0, zIndex: -1 }}>{")"}</span>
@@ -40,4 +32,4 @@ function PronounsBadge(props: PronounsBadgeProps): React.ReactNode {
   );
 }
 
-Messages.addUsernameBadge("pronouns", PronounsBadge);
+Messages.addToUsername("pronouns", PronounsBadge, "username");
