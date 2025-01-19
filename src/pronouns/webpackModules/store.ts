@@ -66,7 +66,7 @@ class PronounsStore_ extends (Flux.PersistedStore as typeof Store)<unknown> {
     return view;
   }
 
-  getPronouns(user: string, guild?: string) {
+  getPronouns(user: string, guild?: string | null) {
     return cache[`${user}-${guild}`]?.pronouns || cache[user]?.pronouns;
   }
 }

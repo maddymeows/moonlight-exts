@@ -4,7 +4,7 @@ import { PronounsStore } from "@moonlight-mod/wp/pronouns_store";
 import React from "@moonlight-mod/wp/react";
 
 type PronounsProps = {
-  guildId: string;
+  guildId: string | null;
   message: {
     author: {
       id: string;
