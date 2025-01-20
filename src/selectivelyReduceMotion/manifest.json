@@ -1,0 +1,33 @@
+{
+  "$schema": "https://moonlight-mod.github.io/manifest.schema.json",
+  "id": "selectivelyReduceMotion",
+  "version": "1.0.0",
+  "apiLevel": 2,
+  "dependencies": [],
+  "meta": {
+    "name": "Selectively Reduce Motion",
+    "tagline": "Allows you to selectively change reduced motion settings",
+    "authors": [
+      "maddy"
+    ],
+    "source": "https://github.com/maddymeows/moonlight-exts",
+    "tags": [
+      "qol",
+      "accessibility"
+    ]
+  },
+  "settings": {
+    "avatarDecorations": {
+      "displayName": "Avatar decorations",
+      "type": "boolean",
+      "default": false,
+      "advice": "none"
+    },
+    "profileEffects": {
+      "displayName": "Profile effects",
+      "type": "boolean",
+      "default": false,
+      "advice": "none"
+    }
+  }
+}
