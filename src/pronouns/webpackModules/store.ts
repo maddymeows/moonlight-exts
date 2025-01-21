@@ -48,22 +48,15 @@ class PronounsStore_ extends (Flux.PersistedStore as typeof Store)<unknown> {
   }
 
   initialize(state?: Cache) {
-    Object.assign(cache, state ?? {});
+    for (const [id, cached] of Object.entries(cache)) {
+      if ((cached?.lastFetched ?? 0) + TTL > Date.now()) {
+        cache[id] = cached;
+      }
+    }
   }
 
   getState() {
-    // mutating the original is icky as pronouns may disappear out of nowhere
-    // if someone hasn't fetched their pronouns in a while
-
-    const view: Cache = {};
-
-    for (const [id, cached] of Object.entries(cache)) {
-      if ((cached?.lastFetched ?? 0) + TTL > Date.now()) {
-        view[id] = cached;
-      }
-    }
-
-    return view;
+    return cache;
   }
 
   getPronouns(user: string, guild?: string | null) {
