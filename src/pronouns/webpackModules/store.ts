@@ -1,7 +1,7 @@
 import Flux, { Store } from "@moonlight-mod/wp/discord/packages/flux";
 import Dispatcher from "@moonlight-mod/wp/discord/Dispatcher";
 
-const TTL = 604800000; // 1w
+const TTL = 86400000 * 28; // 4 weeks
 
 type UserProfileFetchSuccessEvent = {
   user: {
