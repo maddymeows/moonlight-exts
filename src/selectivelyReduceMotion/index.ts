@@ -15,6 +15,13 @@ export const patches: ExtensionWebExports["patches"] = [
       match: /\(0,\i\.\i\)\(\[\i\.\i],\(\)=>\i\.\i\.useReducedMotion\)/,
       replacement: '$&||moonlight.getConfigOption("selectivelyReduceMotion","profileEffects")'
     }
+  },
+  {
+    find: /userCanBurstReact/,
+    replace: {
+      match: /\(0,\i\.\i\)\(\[\i\.\i],\(\)=>\i\.\i\.useReducedMotion\)/,
+      replacement: '$&||moonlight.getConfigOption("selectivelyReduceMotion","burstReactions")'
+    }
   }
 ];
 
