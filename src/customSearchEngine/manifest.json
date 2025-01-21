@@ -1,0 +1,33 @@
+{
+  "$schema": "https://moonlight-mod.github.io/manifest.schema.json",
+  "id": "customSearchEngine",
+  "version": "1.0.0",
+  "apiLevel": 2,
+  "dependencies": [],
+  "meta": {
+    "name": "Custom Search Engine",
+    "tagline": "Replaces the \"Search with Google\" context menu item with a custom search engine",
+    "authors": [
+      "maddy"
+    ],
+    "source": "https://github.com/maddymeows/moonlight-exts",
+    "tags": [
+      "qol"
+    ]
+  },
+  "settings": {
+    "label": {
+      "displayName": "Context menu item label",
+      "type": "string",
+      "default": "Search with Google",
+      "advice": "none"
+    },
+    "url": {
+      "displayName": "Search URL",
+      "description": "'%s' gets replaced with the search query",
+      "type": "string",
+      "default": "https://google.com/search?q=%s",
+      "advice": "none"
+    }
+  }
+}
