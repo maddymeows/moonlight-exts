@@ -1,0 +1,38 @@
+{
+  "$schema": "https://moonlight-mod.github.io/manifest.schema.json",
+  "id": "textReplacer",
+  "version": "1.0.0",
+  "apiLevel": 2,
+  "dependencies": [],
+  "meta": {
+    "name": "Text Replacer",
+    "tagline": "Allows you to find and replace text in your messages before sending",
+    "description": "If the pattern looks like a RegExp literal, will perform replacement with regular expressions, otherwise does a literal case-insensitive match.\n\nRegular expressions capture groups can be referred to with `$n`, and the whole match can be referred to with `$&`, inserting a literal dollar sign is done with `$$`.",
+    "authors": [
+      "maddy"
+    ],
+    "source": "https://github.com/maddymeows/moonlight-exts",
+    "tags": [
+      "chat",
+      "qol"
+    ]
+  },
+  "settings": {
+    "ignore": {
+      "displayName": "Ignore text",
+      "description": "If this text is found at the start of your message, the replacements will be disabled.",
+      "type": "string",
+      "default": "%raw",
+      "advice": "none"
+    },
+    "patterns": {
+      "displayName": "Patterns",
+      "description": "Search text -> Replace text",
+      "type": "dictionary",
+      "default": {
+        "://x.com/": "://twitter.com/"
+      },
+      "advice": "none"
+    }
+  }
+}
