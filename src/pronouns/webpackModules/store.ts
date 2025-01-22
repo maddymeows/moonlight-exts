@@ -49,7 +49,7 @@ class PronounsStore_ extends (Flux.PersistedStore as typeof Store)<unknown> {
 
   initialize(state?: Cache) {
     for (const [id, cached] of Object.entries(cache)) {
-      if ((cached?.lastFetched ?? 0) + TTL > Date.now()) {
+      if ((cached?.lastFetched ?? 0) + TTL < Date.now()) {
         cache[id] = cached;
       }
     }
