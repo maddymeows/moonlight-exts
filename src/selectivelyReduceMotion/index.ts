@@ -17,10 +17,10 @@ export const patches: ExtensionWebExports["patches"] = [
     }
   },
   {
-    find: /userCanBurstReact/,
+    find: '.dispatch({type:"BURST_REACTION_EFFECT_PLAY"',
     replace: {
-      match: /\(0,\i\.\i\)\(\[\i\.\i],\(\)=>\i\.\i\.useReducedMotion\)/,
-      replacement: '$&||moonlight.getConfigOption("selectivelyReduceMotion","burstReactions")'
+      match: /\i\.\i\.dispatch\(\{type:"BURST_REACTION_EFFECT_PLAY"/,
+      replacement: 'if(moonlight.getConfigOption("selectivelyReduceMotion","burstReactions"))return;$&'
     }
   }
 ];
