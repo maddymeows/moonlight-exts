@@ -1,9 +1,11 @@
 import Flux, { Store } from "@moonlight-mod/wp/discord/packages/flux";
 import Dispatcher from "@moonlight-mod/wp/discord/Dispatcher";
 
-const TTL = 86400000 * 28; // 4 weeks
+const FETCHED_TTL = 86400000 * 28; // 4 weeks
+const SEEN_TTL = 86400000 * 7; // 4 weeks
 
 type UserProfileFetchSuccessEvent = {
+  type: "USER_PROFILE_FETCH_SUCCESS";
   user: {
     id: string;
   };
@@ -20,12 +22,13 @@ type Cache = {
   [_ in string]?: {
     pronouns: string;
     lastFetched: number;
+    lastSeen: number;
   };
 };
 
 const cache: Cache = {};
 
-class PronounsStore_ extends (Flux.PersistedStore as typeof Store)<unknown> {
+class PronounsStore_ extends (Flux.PersistedStore as typeof Store)<UserProfileFetchSuccessEvent> {
   static displayName = "PronounsStore";
   static persistKey = "PronounsStore";
 
@@ -35,12 +38,14 @@ class PronounsStore_ extends (Flux.PersistedStore as typeof Store)<unknown> {
       USER_PROFILE_FETCH_SUCCESS: (event: UserProfileFetchSuccessEvent) => {
         cache[event.user.id] = {
           pronouns: event.user_profile.pronouns,
-          lastFetched: Date.now()
+          lastFetched: Date.now(),
+          lastSeen: Date.now()
         };
         if (event.guild_member_profile) {
           cache[`${event.user.id}-${event.guild_member_profile.guild_id}`] = {
             pronouns: event.guild_member_profile.pronouns,
-            lastFetched: Date.now()
+            lastFetched: Date.now(),
+            lastSeen: Date.now()
           };
         }
       }
@@ -49,7 +54,7 @@ class PronounsStore_ extends (Flux.PersistedStore as typeof Store)<unknown> {
 
   initialize(state?: Cache) {
     for (const [id, cached] of Object.entries(state ?? "")) {
-      if ((cached?.lastFetched ?? 0) + TTL > Date.now()) {
+      if (Math.max((cached?.lastFetched ?? 0) + FETCHED_TTL, (cached?.lastSeen ?? 0) + SEEN_TTL) > Date.now()) {
         cache[id] = cached;
       }
     }
@@ -60,7 +65,17 @@ class PronounsStore_ extends (Flux.PersistedStore as typeof Store)<unknown> {
   }
 
   getPronouns(user: string, guild?: string | null) {
-    return cache[`${user}-${guild}`]?.pronouns || cache[user]?.pronouns;
+    const userEntry = cache[user];
+    if (userEntry) {
+      userEntry.lastSeen = Date.now();
+    }
+
+    const memberEntry = cache[`${user}-${guild}`];
+    if (memberEntry) {
+      memberEntry.lastSeen = Date.now();
+    }
+
+    return memberEntry?.pronouns || userEntry?.pronouns;
   }
 }
 
