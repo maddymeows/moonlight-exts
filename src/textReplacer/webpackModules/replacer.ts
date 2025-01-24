@@ -15,7 +15,7 @@ function apply(message: string) {
     if (match) {
       message = message.replace(new RegExp(match[1], match[2]), replace);
     } else {
-      message = message.replaceAll(search, replace);
+      message = message.replace(new RegExp(search.replace(/[$()*+.?[\\\]^{|}]/g, "\\$&"), "giu"), replace);
     }
   }
 

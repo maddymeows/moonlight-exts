@@ -1,21 +1,17 @@
 {
   "$schema": "https://moonlight-mod.github.io/manifest.schema.json",
   "id": "textReplacer",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "apiLevel": 2,
   "dependencies": ["commands"],
   "meta": {
     "name": "Text Replacer",
     "tagline": "Allows you to find and replace text in your messages before sending",
     "description": "If the pattern looks like a RegExp literal, will perform replacement with regular expressions, otherwise does a literal case-insensitive match.\n\nRegular expressions capture groups can be referred to with `$n`, and the whole match can be referred to with `$&`, inserting a literal dollar sign is done with `$$`.",
-    "authors": [
-      "maddy"
-    ],
+    "authors": ["maddy"],
     "source": "https://github.com/maddymeows/moonlight-exts",
-    "tags": [
-      "chat",
-      "qol"
-    ]
+    "tags": ["chat", "qol"],
+    "changelog": "1.2: do case insensitive searches when not using regular expressions\n1.1: increase reliability by using commands library\n1.0: the creation"
   },
   "settings": {
     "ignore": {
