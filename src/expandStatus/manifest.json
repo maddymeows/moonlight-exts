@@ -1,0 +1,15 @@
+{
+  "$schema": "https://moonlight-mod.github.io/manifest.schema.json",
+  "id": "expandStatus",
+  "version": "1.0.0",
+  "apiLevel": 2,
+  "dependencies": [],
+  "meta": {
+    "name": "Expand Status",
+    "tagline": "Expands the status in user profile cards beyond two lines when hovering",
+    "authors": ["maddy"],
+    "source": "https://github.com/maddymeows/moonlight-exts",
+    "tags": ["fixes"],
+    "changelog": "1.0: fixed the discord bug"
+  }
+}
