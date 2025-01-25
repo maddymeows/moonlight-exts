@@ -33,7 +33,6 @@ class PronounsStore_ extends (Flux.PersistedStore as typeof Store)<UserProfileFe
   static persistKey = "PronounsStore";
 
   constructor() {
-    // @ts-expect-error: be normal
     super(Dispatcher, {
       USER_PROFILE_FETCH_SUCCESS: (event: UserProfileFetchSuccessEvent) => {
         cache[event.user.id] = {
