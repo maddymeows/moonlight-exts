@@ -1,5 +1,5 @@
 import Dispatcher from "@moonlight-mod/wp/discord/Dispatcher";
-import Flux, { Store } from "@moonlight-mod/wp/discord/packages/flux";
+import Flux from "@moonlight-mod/wp/discord/packages/flux";
 
 const FETCHED_TTL = 86400000 * 28; // 4 weeks
 const SEEN_TTL = 86400000 * 7; // 4 weeks
@@ -28,7 +28,10 @@ type Cache = {
 
 const cache: Cache = {};
 
-class PronounsStore_ extends (Flux.PersistedStore as typeof Store)<UserProfileFetchSuccessEvent> {
+class PronounsStore_ extends Flux.PersistedStore<
+  UserProfileFetchSuccessEvent,
+  Cache
+> {
   static displayName = "PronounsStore";
   static persistKey = "PronounsStore";
 

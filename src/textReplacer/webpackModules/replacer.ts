@@ -30,10 +30,7 @@ function apply(message: string) {
 }
 
 Commands.registerLegacyCommand("textReplacer", {
-  match: {
-    // @ts-expect-error: https://github.com/moonlight-mod/moonlight/pull/194
-    regex: /^/,
-  },
+  match: Commands.anyScopeRegex(/^/),
   action: (content) => {
     return {
       content: apply(content),
