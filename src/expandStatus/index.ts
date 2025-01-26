@@ -6,9 +6,9 @@ export const patches: ExtensionWebExports["patches"] = [
     find: 'action:"HOVER_CUSTOM_STATUS"',
     replace: {
       match: /onShowToolbar:\i/,
-      replacement: "$&=()=>{}"
-    }
-  }
+      replacement: "$&=()=>{}",
+    },
+  },
 ];
 
 // https://moonlight-mod.github.io/ext-dev/webpack/#webpack-module-insertion

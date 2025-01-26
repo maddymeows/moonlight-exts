@@ -16,18 +16,25 @@ function Pronouns(props: PronounsProps): React.ReactNode {
   const { pronouns } = useStateFromStores(
     [PronounsStore],
     () => ({
-      pronouns: PronounsStore.getPronouns(props.message.author.id, props.guildId)
+      pronouns: PronounsStore.getPronouns(
+        props.message.author.id,
+        props.guildId,
+      ),
     }),
-    [props.message.author.id, props.guildId]
+    [props.message.author.id, props.guildId],
   );
 
   if (!pronouns) return null;
 
   return (
     <span className="pronouns-badge">
-      <span style={{ position: "absolute", opacity: 0, zIndex: -1 }}>{" ("}</span>
+      <span style={{ position: "absolute", opacity: 0, zIndex: -1 }}>
+        {" ("}
+      </span>
       {pronouns}
-      <span style={{ position: "absolute", opacity: 0, zIndex: -1 }}>{")"}</span>
+      <span style={{ position: "absolute", opacity: 0, zIndex: -1 }}>
+        {")"}
+      </span>
     </span>
   );
 }

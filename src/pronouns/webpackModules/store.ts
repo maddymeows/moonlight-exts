@@ -1,5 +1,5 @@
-import Flux, { Store } from "@moonlight-mod/wp/discord/packages/flux";
 import Dispatcher from "@moonlight-mod/wp/discord/Dispatcher";
+import Flux, { Store } from "@moonlight-mod/wp/discord/packages/flux";
 
 const FETCHED_TTL = 86400000 * 28; // 4 weeks
 const SEEN_TTL = 86400000 * 7; // 4 weeks
@@ -38,22 +38,27 @@ class PronounsStore_ extends (Flux.PersistedStore as typeof Store)<UserProfileFe
         cache[event.user.id] = {
           pronouns: event.user_profile.pronouns,
           lastFetched: Date.now(),
-          lastSeen: Date.now()
+          lastSeen: Date.now(),
         };
         if (event.guild_member_profile) {
           cache[`${event.user.id}-${event.guild_member_profile.guild_id}`] = {
             pronouns: event.guild_member_profile.pronouns,
             lastFetched: Date.now(),
-            lastSeen: Date.now()
+            lastSeen: Date.now(),
           };
         }
-      }
+      },
     });
   }
 
   initialize(state?: Cache) {
     for (const [id, cached] of Object.entries(state ?? "")) {
-      if (Math.max((cached?.lastFetched ?? 0) + FETCHED_TTL, (cached?.lastSeen ?? 0) + SEEN_TTL) > Date.now()) {
+      if (
+        Math.max(
+          (cached?.lastFetched ?? 0) + FETCHED_TTL,
+          (cached?.lastSeen ?? 0) + SEEN_TTL,
+        ) > Date.now()
+      ) {
         cache[id] = cached;
       }
     }

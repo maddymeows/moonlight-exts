@@ -17,7 +17,7 @@ if (clean) {
       src: path.resolve(path.join("src", ext)),
       dst: path.resolve(path.join("dist", ext)),
       esm: esm.includes(ext),
-      ext
+      ext,
     };
 
     if (watch) {

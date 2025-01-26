@@ -7,13 +7,9 @@
   "meta": {
     "name": "Custom Search Engine",
     "tagline": "Replaces the \"Search with Google\" context menu item with a custom search engine",
-    "authors": [
-      "maddy"
-    ],
+    "authors": ["maddy"],
     "source": "https://github.com/maddymeows/moonlight-exts",
-    "tags": [
-      "qol"
-    ]
+    "tags": ["qol"]
   },
   "settings": {
     "label": {

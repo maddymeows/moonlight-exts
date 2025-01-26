@@ -7,6 +7,6 @@ export const patches: ExtensionWebExports["patches"] = [];
 export const webpackModules: ExtensionWebExports["webpackModules"] = {
   replacer: {
     dependencies: [{ ext: "commands", id: "commands" }],
-    entrypoint: true
-  }
+    entrypoint: true,
+  },
 };

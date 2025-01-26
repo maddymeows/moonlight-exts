@@ -10,11 +10,14 @@ export const webpackModules: ExtensionWebExports["webpackModules"] = {
       { id: "discord/packages/flux" },
       { id: "react" },
       { ext: "componentEditor", id: "messages" },
-      { ext: "pronouns", id: "store" }
+      { ext: "pronouns", id: "store" },
     ],
-    entrypoint: true
+    entrypoint: true,
   },
   store: {
-    dependencies: [{ id: "discord/packages/flux" }, { id: "discord/Dispatcher" }]
-  }
+    dependencies: [
+      { id: "discord/packages/flux" },
+      { id: "discord/Dispatcher" },
+    ],
+  },
 };
