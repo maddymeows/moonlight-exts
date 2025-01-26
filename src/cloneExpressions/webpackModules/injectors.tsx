@@ -17,13 +17,13 @@ import { useStateFromStores } from "@moonlight-mod/wp/discord/packages/flux";
 import React from "@moonlight-mod/wp/react";
 import spacepack from "@moonlight-mod/wp/spacepack_spacepack";
 
-const GuildIcon = spacepack.findByCode(`SMOL:"Smol",`).find((it) => it.exports.Z)!.exports.Z;
+const GuildIcon = spacepack.findByCode(`SMOL:${JSON.stringify("Smol")},`)[0].exports.Z;
 
 type UploadEmoji = (options: { guildId: string; image: string; name: string }) => Promise<void>;
-const uploadEmoji = spacepack
-  .findByCode('.dispatch({type:"EMOJI_UPLOAD_START",')
-  .flatMap((it) => Object.values(it.exports))
-  .find((it) => String(it).includes('.dispatch({type:"EMOJI_UPLOAD_START",')) as UploadEmoji;
+const uploadEmoji = spacepack.findFunctionByStrings(
+  spacepack.findByCode(`.dispatch({type:${JSON.stringify("EMOJI_UPLOAD_START")},`)[0].exports,
+  `.dispatch({type:${JSON.stringify("EMOJI_UPLOAD_START")},`
+) as UploadEmoji;
 
 type Guild = {
   id: string;
