@@ -117,7 +117,7 @@ function CloneEmojiModal(props: CloneEmojiModalProps) {
   );
 }
 
-export function injectEmoji(
+export function injectPopout(
   _: unknown,
   jsxs: (...args: unknown[]) => React.ReactElement,
 ) {

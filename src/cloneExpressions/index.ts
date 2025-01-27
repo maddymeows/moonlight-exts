@@ -6,7 +6,7 @@ export const patches: ExtensionWebExports["patches"] = [
     find: ".EMOJI_UPSELL_POPOUT_MORE_EMOJIS_OPENED,",
     replace: {
       match: /return(\(0,\i\.jsxs\)\("div",\{className:\i\.emojiSection,)/,
-      replacement: 'return require("cloneExpressions_emoji").injectEmoji$1',
+      replacement: 'return require("cloneExpressions_emoji").injectPopout$1',
     },
   },
 ];
