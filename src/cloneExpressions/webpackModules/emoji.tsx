@@ -10,7 +10,10 @@ import {
   Button,
   openModal,
 } from "@moonlight-mod/wp/discord/components/common/index";
-import { useStateFromStores } from "@moonlight-mod/wp/discord/packages/flux";
+import {
+  statesWillNeverBeEqual,
+  useStateFromStores,
+} from "@moonlight-mod/wp/discord/packages/flux";
 import React from "@moonlight-mod/wp/react";
 import spacepack from "@moonlight-mod/wp/spacepack_spacepack";
 
@@ -52,9 +55,9 @@ function CloneEmojiModal(props: CloneEmojiModalProps) {
   const guildEmojis = useStateFromStores<{ [_ in string]?: GuildEmoji }>(
     [EmojiStore],
     () => EmojiStore.getGuilds(),
+    [],
+    statesWillNeverBeEqual,
   );
-
-  const [, forceRerender] = React.useReducer((it) => it + 1, 0);
 
   return (
     <CloneExpressionModal
@@ -101,8 +104,6 @@ function CloneEmojiModal(props: CloneEmojiModalProps) {
             data.slice(data.indexOf(",")),
           name,
         });
-
-        forceRerender();
       }}
     />
   );
