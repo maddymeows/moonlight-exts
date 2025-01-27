@@ -32,7 +32,9 @@ export const webpackModules: ExtensionWebExports["webpackModules"] = {
       { id: "discord/packages/flux" },
       { ext: "cloneExpressions", id: "core" },
       { ext: "common", id: "stores" },
+      { ext: "contextMenu", id: "contextMenu" },
       { ext: "spacepack", id: "spacepack" },
     ],
+    entrypoint: true,
   },
 };

@@ -3,6 +3,9 @@ import {
   Guild,
 } from "@moonlight-mod/wp/cloneExpressions_core";
 import { EmojiStore, GuildStore } from "@moonlight-mod/wp/common_stores";
+import ContextMenu, {
+  MenuItem,
+} from "@moonlight-mod/wp/contextMenu_contextMenu";
 import {
   Button,
   openModal,
@@ -24,6 +27,8 @@ const uploadEmoji = spacepack.findFunctionByStrings(
 ) as UploadEmoji;
 
 type Emoji = {
+  id: string;
+  name: string;
   animated: boolean;
 };
 
@@ -34,13 +39,11 @@ type GuildEmoji = {
 type CloneEmojiModalProps = {
   transitionState: unknown;
   onClose: () => void;
-  emojiId: string;
-  emojiName: string;
-  animated: boolean;
+  emoji: Emoji;
 };
 
 function CloneEmojiModal(props: CloneEmojiModalProps) {
-  const [name, setName] = React.useState(props.emojiName.replaceAll(":", ""));
+  const [name, setName] = React.useState(props.emoji.name);
 
   const guilds = useStateFromStores<{ [_ in string]?: Guild }>(
     [GuildStore],
@@ -69,12 +72,12 @@ function CloneEmojiModal(props: CloneEmojiModalProps) {
       getSlotsCount={(guild) => guilds[guild.id]?.getMaxEmojiSlots() ?? 0}
       getSlotsUsed={(guild) =>
         guildEmojis[guild.id]?.emojis.filter(
-          (it: { animated: boolean }) => it.animated === props.animated,
+          (it: { animated: boolean }) => it.animated === props.emoji.animated,
         ).length ?? 0
       }
       onClone={async (guild) => {
         const response = await fetch(
-          `https://cdn.discordapp.com/emojis/${props.animated ? "a_" : ""}${props.emojiId}${props.animated ? ".gif" : ".png"}`,
+          `https://cdn.discordapp.com/emojis/${props.emoji.animated ? "a_" : ""}${props.emoji.id}${props.emoji.animated ? ".gif" : ".png"}`,
         );
         const blob = await response.blob();
 
@@ -125,9 +128,11 @@ export function injectEmoji(
             return (
               <CloneEmojiModal
                 {...props}
-                emojiId={emojiId}
-                emojiName={emojiName}
-                animated={animated}
+                emoji={{
+                  id: emojiId,
+                  name: emojiName.replaceAll(":", ""),
+                  animated,
+                }}
               />
             );
           });
@@ -139,3 +144,45 @@ export function injectEmoji(
     return element;
   };
 }
+
+type CloneEmojiMenuItemProps = {
+  target: HTMLElement;
+};
+
+function CloneEmojiMenuItem(props: CloneEmojiMenuItemProps) {
+  if (
+    !(props.target instanceof HTMLImageElement) ||
+    props.target.dataset.type !== "emoji" ||
+    !props.target.dataset.id
+  )
+    return;
+
+  const emoji = useStateFromStores<Emoji>([EmojiStore], () =>
+    EmojiStore.getCustomEmojiById(props.target.dataset.id),
+  ) ?? {
+    id: props.target.dataset.id,
+    name: props.target.alt.replaceAll(":", ""),
+    animated:
+      new URL(props.target.src).pathname.endsWith(".gif") ||
+      new URL(props.target.src).searchParams.get("animated") === "true",
+  };
+
+  return (
+    <MenuItem
+      id="clone"
+      label="Clone Emoji"
+      action={() => {
+        openModal((props) => {
+          return <CloneEmojiModal {...props} emoji={emoji} />;
+        });
+      }}
+    />
+  );
+}
+
+ContextMenu.addItem(
+  "expression-picker",
+  CloneEmojiMenuItem,
+  /^(?:un)?favorite$/,
+);
+ContextMenu.addItem("message", CloneEmojiMenuItem, "copy-native-link", true);

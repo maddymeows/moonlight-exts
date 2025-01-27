@@ -1,15 +1,15 @@
 {
   "$schema": "https://moonlight-mod.github.io/manifest.schema.json",
   "id": "cloneExpressions",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "apiLevel": 2,
-  "dependencies": ["common"],
+  "dependencies": ["common", "contextMenu"],
   "meta": {
     "name": "Clone Emoji",
     "tagline": "Allows you to clone emoji to your own servers",
     "authors": ["maddy"],
     "source": "https://github.com/maddymeows/moonlight-exts",
     "tags": ["qol"],
-    "changelog": "1.0: theft is now legal"
+    "changelog": "1.1: added clone button to context menus\n1.0: theft is now legal"
   }
 }
