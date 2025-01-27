@@ -104,7 +104,7 @@ export function CloneExpressionModal(props: CloneExpressionModalProps) {
             </div>
             <Button
               size={Button.Sizes.SMALL}
-              disabled={props.getSlotsUsed(guild) > props.getSlotsCount(guild)}
+              disabled={props.getSlotsUsed(guild) >= props.getSlotsCount(guild)}
               onClick={() => {
                 props.onClone(guild);
               }}
