@@ -5,7 +5,6 @@ import {
 } from "@moonlight-mod/wp/common_stores";
 import {
   Button,
-  FormItem,
   Heading,
   ModalCloseButton,
   ModalFooter,
@@ -13,7 +12,6 @@ import {
   ModalRoot,
   Scroller,
   Text,
-  TextInput,
 } from "@moonlight-mod/wp/discord/components/common/index";
 import { Permissions } from "@moonlight-mod/wp/discord/Constants";
 import { useStateFromStores } from "@moonlight-mod/wp/discord/packages/flux";
@@ -34,9 +32,7 @@ export type CloneExpressionModalProps = {
   transitionState: unknown;
   onClose: () => void;
   title: string;
-  name: string;
-  onChangeName: (name: string) => void;
-  nameValidationError: string | undefined;
+  footer: React.ReactNode;
   getSlotsCount: (guild: Guild) => number;
   getSlotsUsed: (guild: Guild) => number;
   onClone: (guild: Guild) => void;
@@ -115,15 +111,7 @@ export function CloneExpressionModal(props: CloneExpressionModalProps) {
         ))}
         <div style={{ height: "8px" }} />
       </Scroller>
-      <ModalFooter>
-        <FormItem
-          title="Name"
-          error={props.nameValidationError}
-          style={{ flexGrow: "1" }}
-        >
-          <TextInput value={props.name} onChange={props.onChangeName} />
-        </FormItem>
-      </ModalFooter>
+      <ModalFooter>{props.footer}</ModalFooter>
     </ModalRoot>
   );
 }

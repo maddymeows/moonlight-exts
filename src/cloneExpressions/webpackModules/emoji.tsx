@@ -8,7 +8,9 @@ import ContextMenu, {
 } from "@moonlight-mod/wp/contextMenu_contextMenu";
 import {
   Button,
+  FormItem,
   openModal,
+  TextInput,
 } from "@moonlight-mod/wp/discord/components/common/index";
 import {
   statesWillNeverBeEqual,
@@ -63,14 +65,20 @@ function CloneEmojiModal(props: CloneEmojiModalProps) {
     <CloneExpressionModal
       {...props}
       title="Clone Emoji"
-      name={name}
-      onChangeName={setName}
-      nameValidationError={
-        /\W/.test(name)
-          ? "Name can only contain alphanumeric characters or underscores"
-          : 2 > name.length || name.length > 32
-            ? "Name must be between 2 and 32 characters long"
-            : undefined
+      footer={
+        <FormItem
+          title="Name"
+          error={
+            /\W/.test(name)
+              ? "Name can only contain alphanumeric characters or underscores"
+              : 2 > name.length || name.length > 32
+                ? "Name must be between 2 and 32 characters long"
+                : undefined
+          }
+          style={{ flexGrow: "1" }}
+        >
+          <TextInput value={name} onChange={setName} />
+        </FormItem>
       }
       getSlotsCount={(guild) => guilds[guild.id]?.getMaxEmojiSlots() ?? 0}
       getSlotsUsed={(guild) =>
