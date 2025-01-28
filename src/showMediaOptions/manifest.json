@@ -1,0 +1,15 @@
+{
+  "$schema": "https://moonlight-mod.github.io/manifest.schema.json",
+  "id": "showMediaOptions",
+  "version": "1.0.0",
+  "apiLevel": 2,
+  "dependencies": [],
+  "meta": {
+    "name": "Show Media Options",
+    "tagline": "Forces the \"Copy Link\" and \"Open Link\" context menu items to show up on all media",
+    "authors": ["maddy"],
+    "source": "https://github.com/maddymeows/moonlight-exts",
+    "tags": ["fixes", "qol"],
+    "changelog": "1.0: copy your links"
+  }
+}
