@@ -153,21 +153,27 @@ type CloneEmojiMenuItemProps = {
 };
 
 function CloneEmojiMenuItem(props: CloneEmojiMenuItemProps) {
+  const image =
+    props.target instanceof HTMLImageElement
+      ? props.target
+      : props.target.firstElementChild;
+
   if (
-    !(props.target instanceof HTMLImageElement) ||
+    !(image instanceof HTMLImageElement) ||
     props.target.dataset.type !== "emoji" ||
     !props.target.dataset.id
-  )
+  ) {
     return;
+  }
 
   const emoji = useStateFromStores<Emoji>([EmojiStore], () =>
     EmojiStore.getCustomEmojiById(props.target.dataset.id),
   ) ?? {
     id: props.target.dataset.id,
-    name: props.target.alt.replaceAll(":", ""),
+    name: image.alt.replaceAll(":", ""),
     animated:
-      new URL(props.target.src).pathname.endsWith(".gif") ||
-      new URL(props.target.src).searchParams.get("animated") === "true",
+      new URL(image.src).pathname.endsWith(".gif") ||
+      new URL(image.src).searchParams.get("animated") === "true",
   };
 
   return (
