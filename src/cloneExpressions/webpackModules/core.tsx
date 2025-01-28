@@ -26,6 +26,7 @@ export type Guild = {
   name: string;
   getIconURL(resolution: number): string;
   getMaxEmojiSlots(): number;
+  premiumTier: number;
 };
 
 export type CloneExpressionModalProps = {
