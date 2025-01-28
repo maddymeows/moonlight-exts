@@ -61,6 +61,7 @@ function CloneEmojiModal(props: CloneEmojiModalProps) {
       footer={
         <FormItem
           title="Name"
+          required
           error={
             /\W/.test(name)
               ? "Name can only contain alphanumeric characters or underscores"
