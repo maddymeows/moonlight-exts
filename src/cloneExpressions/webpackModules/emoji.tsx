@@ -1,8 +1,5 @@
-import {
-  CloneExpressionModal,
-  Guild,
-} from "@moonlight-mod/wp/cloneExpressions_core";
-import { EmojiStore, GuildStore } from "@moonlight-mod/wp/common_stores";
+import { CloneExpressionModal } from "@moonlight-mod/wp/cloneExpressions_core";
+import { EmojiStore } from "@moonlight-mod/wp/common_stores";
 import ContextMenu, {
   MenuItem,
 } from "@moonlight-mod/wp/contextMenu_contextMenu";
@@ -50,10 +47,6 @@ type CloneEmojiModalProps = {
 function CloneEmojiModal(props: CloneEmojiModalProps) {
   const [name, setName] = React.useState(props.emoji.name);
 
-  const guilds = useStateFromStores<{ [_ in string]?: Guild }>(
-    [GuildStore],
-    () => GuildStore.getGuilds(),
-  );
   const guildEmojis = useStateFromStores<{ [_ in string]?: GuildEmoji }>(
     [EmojiStore],
     () => EmojiStore.getGuilds(),
@@ -80,7 +73,7 @@ function CloneEmojiModal(props: CloneEmojiModalProps) {
           <TextInput value={name} onChange={setName} />
         </FormItem>
       }
-      getSlotsCount={(guild) => guilds[guild.id]?.getMaxEmojiSlots() ?? 0}
+      getSlotsCount={(guild) => guild.getMaxEmojiSlots()}
       getSlotsUsed={(guild) =>
         guildEmojis[guild.id]?.emojis.filter(
           (it: { animated: boolean }) => it.animated === props.emoji.animated,
