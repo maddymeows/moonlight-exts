@@ -1,0 +1,42 @@
+{
+  "$schema": "https://moonlight-mod.github.io/manifest.schema.json",
+  "id": "keybindTweaks",
+  "version": "1.0.0",
+  "apiLevel": 2,
+  "dependencies": [],
+  "meta": {
+    "name": "Keybind Tweaks",
+    "tagline": "Modifies the behaviour of some keyboard shortcuts",
+    "authors": ["maddy"],
+    "source": "https://github.com/maddymeows/moonlight-exts",
+    "tags": ["qol"],
+    "changelog": "1.0: keyboard efficiency programme has launched"
+  },
+  "settings": {
+    "disableCallStart": {
+      "displayName": "Disable start call shortcut",
+      "description": "Triggered with Ctrl-' and Ctrl-Shift-' in DMs",
+      "type": "boolean",
+      "default": false,
+      "advice": "none"
+    },
+    "disableToggleCategoryCollapsed": {
+      "displayName": "Disable toggle categories shortcut",
+      "description": "Triggered with Ctrl-Shift-A in servers",
+      "type": "boolean",
+      "default": false,
+      "advice": "none"
+    },
+    "navigateUnreadChannelBehavior": {
+      "displayName": "Navigate unread channel behavior",
+      "description": "Allows configuring how the shortcuts for navigating between unread channels work",
+      "type": "multiselect",
+      "options": [
+        "Skip current voice channel",
+        "Skip event channels with unseen events"
+      ],
+      "default": [],
+      "advice": "none"
+    }
+  }
+}
