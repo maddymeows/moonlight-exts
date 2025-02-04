@@ -72,11 +72,7 @@ export function CloneExpressionModal(props: CloneExpressionModalProps) {
               padding: "0 16px",
             }}
           >
-            <GuildIcon
-              guild={guild}
-              iconSrc={guild.getIconURL(96)}
-              size={GuildIcon.Sizes.SMALL}
-            />
+            <GuildIcon guild={guild} size={GuildIcon.Sizes.SMALL} />
             <div
               style={{
                 flexGrow: "1",
