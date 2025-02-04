@@ -1,15 +1,17 @@
 {
   "$schema": "https://moonlight-mod.github.io/manifest.schema.json",
   "id": "selectivelyReduceMotion",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "apiLevel": 2,
   "dependencies": [],
   "meta": {
     "name": "Selectively Reduce Motion",
     "tagline": "Allows you to selectively change reduced motion settings",
+    "description": "Turning a setting on means motion will be reduced for that feature, by default this extension does nothing.",
     "authors": ["maddy"],
     "source": "https://github.com/maddymeows/moonlight-exts",
-    "tags": ["qol", "accessibility"]
+    "tags": ["qol", "accessibility"],
+    "changelog": "1.2: allow disabling motion for scrolling animations\n1.1: allow disabling motion for super reactions\n1.0: reduced the motions"
   },
   "settings": {
     "avatarDecorations": {
@@ -26,6 +28,13 @@
     },
     "burstReactions": {
       "displayName": "Super reactions",
+      "type": "boolean",
+      "default": false,
+      "advice": "none"
+    },
+    "scrolling": {
+      "displayName": "Scrolling",
+      "description": "Includes \"Jump to Present\" button and Page Up/Down keys. Does not include smooth scrolling with the scroll wheel. For disabling scroll wheel animations use the \"No Smooth Scrolling\" extension.",
       "type": "boolean",
       "default": false,
       "advice": "none"

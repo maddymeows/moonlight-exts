@@ -26,6 +26,14 @@ export const patches: ExtensionWebExports["patches"] = [
         'if(moonlight.getConfigOption("selectivelyReduceMotion","burstReactions"))return;$&',
     },
   },
+  {
+    find: "isScrolledToTop:()=>",
+    replace: {
+      match: /(\i)\.to\(\{([^}]*)animate:([^}]*)}\)/,
+      replacement:
+        '$1.to({$2animate:!moonlight.getConfigOption("selectivelyReduceMotion","scrolling")&&$3})',
+    },
+  },
 ];
 
 // https://moonlight-mod.github.io/ext-dev/webpack/#webpack-module-insertion
