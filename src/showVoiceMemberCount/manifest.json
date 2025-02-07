@@ -1,0 +1,15 @@
+{
+  "$schema": "https://moonlight-mod.github.io/manifest.schema.json",
+  "id": "showVoiceMemberCount",
+  "version": "1.0.0",
+  "apiLevel": 2,
+  "dependencies": [],
+  "meta": {
+    "name": "Show Voice Member Count",
+    "tagline": "Shows the member count in voice channels even if there is no limit",
+    "authors": ["maddy"],
+    "source": "https://github.com/maddymeows/moonlight-exts",
+    "tags": ["qol", "voice"],
+    "changelog": "1.0: \u221e"
+  }
+}
