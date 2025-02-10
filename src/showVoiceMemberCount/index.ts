@@ -1,8 +1,5 @@
 import { ExtensionWebExports } from "@moonlight-mod/types";
 
-// 876548
-// 648501
-
 // https://moonlight-mod.github.io/ext-dev/webpack/#patching
 export const patches: ExtensionWebExports["patches"] = [
   {
@@ -24,9 +21,4 @@ export const patches: ExtensionWebExports["patches"] = [
 ];
 
 // https://moonlight-mod.github.io/ext-dev/webpack/#webpack-module-insertion
-export const webpackModules: ExtensionWebExports["webpackModules"] = {
-  replacer: {
-    dependencies: [{ ext: "commands", id: "commands" }],
-    entrypoint: true,
-  },
-};
+export const webpackModules: ExtensionWebExports["webpackModules"] = {};
