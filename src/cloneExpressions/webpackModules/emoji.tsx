@@ -32,6 +32,7 @@ type Emoji = {
   id: string;
   name: string;
   animated: boolean;
+  managed: boolean;
 };
 
 type GuildEmoji = {
@@ -76,9 +77,10 @@ function CloneEmojiModal(props: CloneEmojiModalProps) {
       }
       getSlotsCount={(guild) => guild.getMaxEmojiSlots()}
       getSlotsUsed={(guild) =>
-        guildEmojis[guild.id]?.emojis.filter(
-          (it: { animated: boolean }) => it.animated === props.emoji.animated,
-        ).length ?? 0
+        guildEmojis[guild.id]?.emojis
+          .filter((it: Emoji) => !it.managed)
+          .filter((it: Emoji) => it.animated === props.emoji.animated).length ??
+        0
       }
       onClone={async (guild) => {
         const response = await fetch(
@@ -133,6 +135,7 @@ export function injectPopout(
                   id: emojiId,
                   name: emojiName.replaceAll(":", ""),
                   animated,
+                  managed: false,
                 }}
               />
             );
