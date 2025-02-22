@@ -101,9 +101,7 @@ function CloneEmojiModal(props: CloneEmojiModalProps) {
 
         await uploadEmoji({
           guildId: guild.id,
-          image:
-            `data:${response.headers.get("content-type")};base64` +
-            data.slice(data.indexOf(",")),
+          image: data,
           name,
         });
       }}

@@ -117,12 +117,7 @@ function CloneStickerModal(props: CloneStickerModalProps) {
         form.set("name", name);
         form.set("tags", tags);
         form.set("description", description);
-        form.set(
-          "file",
-          new File([blob], "", {
-            type: response.headers.get("content-type") ?? undefined,
-          }),
-        );
+        form.set("file", blob);
 
         await uploadSticker(guild.id, form);
       }}
