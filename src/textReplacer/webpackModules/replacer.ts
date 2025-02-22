@@ -1,8 +1,6 @@
-import Commands from "@moonlight-mod/wp/commands_commands";
-
 const REGEXP_REGEXP = /^\/(.+)\/(\w*)$/s;
 
-function apply(message: string) {
+export function apply(message: string) {
   const ignore = moonlight.getConfigOption<string>("textReplacer", "ignore");
   if (ignore && message.startsWith(ignore)) {
     return message.replace(ignore, "").trim();
@@ -28,12 +26,3 @@ function apply(message: string) {
 
   return message.trim();
 }
-
-Commands.registerLegacyCommand("textReplacer", {
-  match: Commands.anyScopeRegex(/^/),
-  action: (content) => {
-    return {
-      content: apply(content),
-    };
-  },
-});
