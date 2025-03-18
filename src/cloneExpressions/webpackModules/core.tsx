@@ -25,7 +25,6 @@ export type Guild = {
   id: string;
   name: string;
   getIconURL(resolution: number): string;
-  getMaxEmojiSlots(): number;
   premiumTier: number;
 };
 

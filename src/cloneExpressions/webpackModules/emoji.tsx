@@ -28,6 +28,8 @@ const uploadEmoji = spacepack.findFunctionByStrings(
   `.dispatch({type:${JSON.stringify("EMOJI_UPLOAD_START")},`,
 ) as UploadEmoji;
 
+const EMOJI_SLOTS_PER_TIER = [50, 100, 150, 250];
+
 type Emoji = {
   id: string;
   name: string;
@@ -75,7 +77,7 @@ function CloneEmojiModal(props: CloneEmojiModalProps) {
           <TextInput value={name} onChange={setName} />
         </FormItem>
       }
-      getSlotsCount={(guild) => guild.getMaxEmojiSlots()}
+      getSlotsCount={(guild) => EMOJI_SLOTS_PER_TIER[guild.premiumTier]}
       getSlotsUsed={(guild) =>
         guildEmojis[guild.id]?.emojis
           .filter((it: Emoji) => !it.managed)
