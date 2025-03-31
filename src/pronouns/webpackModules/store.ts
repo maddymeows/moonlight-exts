@@ -6,15 +6,17 @@ const SEEN_TTL = 86400000 * 7; // 4 weeks
 
 type UserProfileFetchSuccessEvent = {
   type: "USER_PROFILE_FETCH_SUCCESS";
-  user: {
-    id: string;
-  };
-  user_profile: {
-    pronouns: string;
-  };
-  guild_member_profile?: {
-    guild_id: string;
-    pronouns: string;
+  userProfile: {
+    user: {
+      id: string;
+    };
+    user_profile: {
+      pronouns: string;
+    };
+    guild_member_profile?: {
+      guild_id: string;
+      pronouns: string;
+    };
   };
 };
 
@@ -38,14 +40,16 @@ class PronounsStore_ extends Flux.PersistedStore<
   constructor() {
     super(Dispatcher, {
       USER_PROFILE_FETCH_SUCCESS: (event: UserProfileFetchSuccessEvent) => {
-        cache[event.user.id] = {
-          pronouns: event.user_profile.pronouns,
+        cache[event.userProfile.user.id] = {
+          pronouns: event.userProfile.user_profile.pronouns,
           lastFetched: Date.now(),
           lastSeen: Date.now(),
         };
-        if (event.guild_member_profile) {
-          cache[`${event.user.id}-${event.guild_member_profile.guild_id}`] = {
-            pronouns: event.guild_member_profile.pronouns,
+        if (event.userProfile.guild_member_profile) {
+          cache[
+            `${event.userProfile.user.id}-${event.userProfile.guild_member_profile.guild_id}`
+          ] = {
+            pronouns: event.userProfile.guild_member_profile.pronouns,
             lastFetched: Date.now(),
             lastSeen: Date.now(),
           };
