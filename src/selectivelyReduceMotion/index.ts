@@ -19,6 +19,14 @@ export const patches: ExtensionWebExports["patches"] = [
     },
   },
   {
+    find: /\{defaultAsset:\i,webmAsset:\i,staticAsset:\i}=/,
+    replace: {
+      match: /animate:(\i),loop:!0===\1&&!0===(\i)/,
+      replacement:
+        'animate:$1&&!moonlight.getConfigOption("selectivelyReduceMotion","nameplates"),loop:$1&&$2',
+    },
+  },
+  {
     find: '.dispatch({type:"BURST_REACTION_EFFECT_PLAY"',
     replace: {
       match: /\i\.\i\.dispatch\(\{type:"BURST_REACTION_EFFECT_PLAY"/,
