@@ -38,12 +38,6 @@
       "default": false,
       "advice": "none"
     },
-    "confetti": {
-      "displayName": "Emoji confetti",
-      "type": "boolean",
-      "default": false,
-      "advice": "none"
-    },
     "scrolling": {
       "displayName": "Scrolling",
       "description": "Includes \"Jump to Present\" button and Page Up/Down keys. Does not include smooth scrolling with the scroll wheel. For disabling scroll wheel animations use the \"No Smooth Scrolling\" extension.",
