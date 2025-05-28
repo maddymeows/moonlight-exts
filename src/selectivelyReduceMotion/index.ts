@@ -19,7 +19,7 @@ export const patches: ExtensionWebExports["patches"] = [
     },
   },
   {
-    find: /\{defaultAsset:\i,webmAsset:\i,staticAsset:\i}=/,
+    find: /\{staticAsset:\i,animatedAsset:\i}=/,
     replace: {
       match: /animate:(\i),loop:!0===\1&&!0===(\i)/,
       replacement:
