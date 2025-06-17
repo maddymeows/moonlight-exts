@@ -14,7 +14,12 @@ import { useStateFromStores } from "@moonlight-mod/wp/discord/packages/flux";
 import React from "@moonlight-mod/wp/react";
 import spacepack from "@moonlight-mod/wp/spacepack_spacepack";
 
-type UploadSticker = (guildId: string, data: FormData) => Promise<void>;
+type UploadStickerPayload = {
+  guildId: string;
+  platform: "web";
+  body: FormData;
+};
+type UploadSticker = (payload: UploadStickerPayload) => Promise<void>;
 const uploadSticker = spacepack.findFunctionByStrings(
   spacepack.findByCode(
     `.dispatch({type:${JSON.stringify("GUILD_STICKERS_CREATE_SUCCESS")},`,
@@ -119,7 +124,11 @@ function CloneStickerModal(props: CloneStickerModalProps) {
         form.set("description", description);
         form.set("file", blob);
 
-        await uploadSticker(guild.id, form);
+        await uploadSticker({
+          guildId: guild.id,
+          platform: "web",
+          body: form,
+        });
       }}
     />
   );
