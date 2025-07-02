@@ -6,10 +6,10 @@ import ContextMenu, {
 import {
   Button,
   FormItem,
-  openModal,
   TextArea,
   TextInput,
 } from "@moonlight-mod/wp/discord/components/common/index";
+import { openModal } from "@moonlight-mod/wp/discord/modules/modals/Modals";
 import { useStateFromStores } from "@moonlight-mod/wp/discord/packages/flux";
 import React from "@moonlight-mod/wp/react";
 import spacepack from "@moonlight-mod/wp/spacepack_spacepack";

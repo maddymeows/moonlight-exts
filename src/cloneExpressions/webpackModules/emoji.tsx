@@ -6,9 +6,9 @@ import ContextMenu, {
 import {
   Button,
   FormItem,
-  openModal,
   TextInput,
 } from "@moonlight-mod/wp/discord/components/common/index";
+import { openModal } from "@moonlight-mod/wp/discord/modules/modals/Modals";
 import {
   statesWillNeverBeEqual,
   useStateFromStores,
