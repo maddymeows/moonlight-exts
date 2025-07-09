@@ -4,13 +4,13 @@ import ContextMenu, {
   MenuItem,
 } from "@moonlight-mod/wp/contextMenu_contextMenu";
 import {
-  Button,
   FormItem,
   TextArea,
   TextInput,
 } from "@moonlight-mod/wp/discord/components/common/index";
 import { openModal } from "@moonlight-mod/wp/discord/modules/modals/Modals";
 import { useStateFromStores } from "@moonlight-mod/wp/discord/packages/flux";
+import { Button } from "@moonlight-mod/wp/discord/uikit/legacy/Button";
 import React from "@moonlight-mod/wp/react";
 import spacepack from "@moonlight-mod/wp/spacepack_spacepack";
 
@@ -136,7 +136,7 @@ function CloneStickerModal(props: CloneStickerModalProps) {
 
 export function injectPopout(
   _: unknown,
-  jsxs: (...args: unknown[]) => React.ReactElement,
+  jsxs: (...args: unknown[]) => React.ReactElement<any>,
 ) {
   return (...args: unknown[]) => {
     const element = jsxs(...args);

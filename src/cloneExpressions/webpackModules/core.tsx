@@ -4,7 +4,6 @@ import {
   SortedGuildStore,
 } from "@moonlight-mod/wp/common_stores";
 import {
-  Button,
   Heading,
   ModalCloseButton,
   ModalFooter,
@@ -15,6 +14,7 @@ import {
 } from "@moonlight-mod/wp/discord/components/common/index";
 import { Permissions } from "@moonlight-mod/wp/discord/Constants";
 import { useStateFromStores } from "@moonlight-mod/wp/discord/packages/flux";
+import { Button } from "@moonlight-mod/wp/discord/uikit/legacy/Button";
 import React from "@moonlight-mod/wp/react";
 import spacepack from "@moonlight-mod/wp/spacepack_spacepack";
 

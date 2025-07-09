@@ -4,7 +4,6 @@ import ContextMenu, {
   MenuItem,
 } from "@moonlight-mod/wp/contextMenu_contextMenu";
 import {
-  Button,
   FormItem,
   TextInput,
 } from "@moonlight-mod/wp/discord/components/common/index";
@@ -13,6 +12,7 @@ import {
   statesWillNeverBeEqual,
   useStateFromStores,
 } from "@moonlight-mod/wp/discord/packages/flux";
+import { Button } from "@moonlight-mod/wp/discord/uikit/legacy/Button";
 import React from "@moonlight-mod/wp/react";
 import spacepack from "@moonlight-mod/wp/spacepack_spacepack";
 
@@ -115,7 +115,7 @@ function CloneEmojiModal(props: CloneEmojiModalProps) {
 
 export function injectPopout(
   _: unknown,
-  jsxs: (...args: unknown[]) => React.ReactElement,
+  jsxs: (...args: unknown[]) => React.ReactElement<any>,
 ) {
   return (...args: unknown[]) => {
     const element = jsxs(...args);
