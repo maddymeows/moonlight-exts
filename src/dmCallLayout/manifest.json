@@ -1,9 +1,9 @@
 {
   "$schema": "https://moonlight-mod.github.io/manifest.schema.json",
   "id": "dmCallLayout",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "apiLevel": 2,
-  "dependencies": [],
+  "dependencies": ["common"],
   "meta": {
     "name": "DM Call Layout",
     "tagline": "Force the DM call layout in servers",
