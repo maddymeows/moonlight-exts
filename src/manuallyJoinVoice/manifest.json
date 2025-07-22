@@ -1,0 +1,15 @@
+{
+  "$schema": "https://moonlight-mod.github.io/manifest.schema.json",
+  "id": "manuallyJoinVoice",
+  "version": "1.0.2",
+  "apiLevel": 2,
+  "dependencies": [],
+  "meta": {
+    "name": "Manually Join Voice",
+    "tagline": "Only opens the channel when clicking on a voice channel forcing you to click the Join Voice button to actually connect",
+    "authors": ["maddy"],
+    "source": "https://github.com/maddymeows/moonlight-exts",
+    "tags": ["voice"],
+    "changelog": "1.0: joined a voice channel"
+  }
+}
