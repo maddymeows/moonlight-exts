@@ -8,7 +8,7 @@ export const patches: ExtensionWebExports["patches"] = [
       {
         match: /getLayout\((\i)\)\{/,
         replacement:
-          '$&if(require("common_stores").ChannelStore.getChannel($1)?.isGuildVoice())return"normal";',
+          '$&if(require("common_stores").ChannelStore.getChannel($1)?.isGuildVoice()&&!this.isFullscreenInContext(arguments[1]??"APP"))return"normal";',
       },
     ],
   },
