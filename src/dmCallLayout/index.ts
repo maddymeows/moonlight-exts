@@ -6,9 +6,18 @@ export const patches: ExtensionWebExports["patches"] = [
     find: '"displayName","ChannelRTCStore"',
     replace: [
       {
-        match: /getLayout\((\i)\)\{/,
+        match: /(\i)(\?\i\.\i\.NO_CHAT:\i\.\i\.NORMAL)/,
         replacement:
-          '$&if(require("common_stores").ChannelStore.getChannel($1)?.isGuildVoice()&&!this.isFullscreenInContext(arguments[1]??"APP"))return"normal";',
+          '$1&&(require("common_stores").ChannelStore.getChannel($1)?.isGuildVoice()&&!this.isFullscreenInContext(arguments[1]??"APP"))$2',
+      },
+    ],
+  },
+  {
+    find: 'location:"ChannelCall"',
+    replace: [
+      {
+        match: /\i!==\i.\i.VOICE&&\i.isPrivate\(\)&&(!this\.inPopout&&\i)/,
+        replacement: "$1",
       },
     ],
   },
