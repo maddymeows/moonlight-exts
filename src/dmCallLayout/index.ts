@@ -54,6 +54,15 @@ export const patches: ExtensionWebExports["patches"] = [
       },
     ],
   },
+  {
+    find: 'location:"voice_channel"',
+    replace: [
+      {
+        match: /"renderOpenChatButton",\(\)=>\{/,
+        replacement: "$&return null;",
+      },
+    ],
+  },
 ];
 
 // https://moonlight-mod.github.io/ext-dev/webpack/#webpack-module-insertion
