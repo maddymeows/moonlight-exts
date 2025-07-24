@@ -8,7 +8,7 @@ export const patches: ExtensionWebExports["patches"] = [
       {
         match: /(\i)(\?\i\.\i\.NO_CHAT:\i\.\i\.NORMAL)/,
         replacement:
-          '$1&&(require("common_stores").ChannelStore.getChannel($1)?.isGuildVoice()&&!this.isFullscreenInContext(arguments[1]??"APP"))$2',
+          '$1&&require("common_stores").ChannelStore.getChannel($1)?.isGuildVoice()&&!this.isFullscreenInContext(arguments[1]??"APP")$2',
       },
     ],
   },
@@ -18,6 +18,30 @@ export const patches: ExtensionWebExports["patches"] = [
       {
         match: /\i!==\i.\i.VOICE&&\i.isPrivate\(\)&&(!this\.inPopout&&\i)/,
         replacement: "$1",
+      },
+      {
+        match: /render\(\)\{let\{([^}]+)}=this\.props/,
+        replacement:
+          'render(){let{$1}={...this.props,chatOpen:this.props.chatOpen&&(this.inPopout||this.props.layout!=="normal")}',
+      },
+    ],
+  },
+  {
+    find: 'location:"ChannelChat"',
+    replace: [
+      {
+        match: /\.memo\(function\((\i)\)\{/,
+        replacement:
+          '$&let _moonlight_dmCallLayout_shouldRenderChat=require("discord/packages/flux").useStateFromStores([require("common_stores").ChannelRTCStore],()=>require("common_stores").ChannelRTCStore.getLayout($1.channel.id)==="normal"||$1.chatInputType.analyticsName!=="normal");',
+      },
+      {
+        match: /return\(0,\i\.jsx\)\(\i,\{/,
+        replacement: "$&_moonlight_dmCallLayout_shouldRenderChat,",
+      },
+      {
+        match: /let[^;]+?isChatInputBottomAligned[^;]+?;/,
+        replacement:
+          "$&if(!this.props._moonlight_dmCallLayout_shouldRenderChat)return null;",
       },
     ],
   },
