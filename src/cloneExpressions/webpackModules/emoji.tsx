@@ -3,16 +3,14 @@ import { EmojiStore } from "@moonlight-mod/wp/common_stores";
 import ContextMenu, {
   MenuItem,
 } from "@moonlight-mod/wp/contextMenu_contextMenu";
-import {
-  FormItem,
-  TextInput,
-} from "@moonlight-mod/wp/discord/components/common/index";
+import { FormItem } from "@moonlight-mod/wp/discord/components/common/index";
 import { openModal } from "@moonlight-mod/wp/discord/modules/modals/Modals";
 import {
   statesWillNeverBeEqual,
   useStateFromStores,
 } from "@moonlight-mod/wp/discord/packages/flux";
 import { Button } from "@moonlight-mod/wp/discord/uikit/legacy/Button";
+import TextInput from "@moonlight-mod/wp/discord/uikit/TextInput";
 import React from "@moonlight-mod/wp/react";
 import spacepack from "@moonlight-mod/wp/spacepack_spacepack";
 

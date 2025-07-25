@@ -26,10 +26,11 @@ export const webpackModules: ExtensionWebExports["webpackModules"] = {
   core: {
     dependencies: [
       'SMOL:"Smol",',
-      { id: "react" },
       { id: "discord/components/common/index" },
       { id: "discord/Constants" },
       { id: "discord/packages/flux" },
+      { id: "discord/uikit/legacy/Button" },
+      { id: "react" },
       { ext: "common", id: "stores" },
       { ext: "spacepack", id: "spacepack" },
     ],
@@ -37,9 +38,12 @@ export const webpackModules: ExtensionWebExports["webpackModules"] = {
   emoji: {
     dependencies: [
       '.dispatch({type:"EMOJI_UPLOAD_START",',
-      { id: "react" },
       { id: "discord/components/common/index" },
+      { id: "discord/modules/modals/Modals" },
       { id: "discord/packages/flux" },
+      { id: "discord/uikit/legacy/Button" },
+      { id: "discord/uikit/TextInput" },
+      { id: "react" },
       { ext: "cloneExpressions", id: "core" },
       { ext: "common", id: "stores" },
       { ext: "contextMenu", id: "contextMenu" },
@@ -50,9 +54,12 @@ export const webpackModules: ExtensionWebExports["webpackModules"] = {
   sticker: {
     dependencies: [
       '.dispatch({type:"GUILD_STICKERS_CREATE_SUCCESS",',
-      { id: "react" },
       { id: "discord/components/common/index" },
+      { id: "discord/modules/modals/Modals" },
       { id: "discord/packages/flux" },
+      { id: "discord/uikit/legacy/Button" },
+      { id: "discord/uikit/TextInput" },
+      { id: "react" },
       { ext: "cloneExpressions", id: "core" },
       { ext: "common", id: "stores" },
       { ext: "contextMenu", id: "contextMenu" },

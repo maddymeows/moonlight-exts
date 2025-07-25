@@ -6,11 +6,11 @@ import ContextMenu, {
 import {
   FormItem,
   TextArea,
-  TextInput,
 } from "@moonlight-mod/wp/discord/components/common/index";
 import { openModal } from "@moonlight-mod/wp/discord/modules/modals/Modals";
 import { useStateFromStores } from "@moonlight-mod/wp/discord/packages/flux";
 import { Button } from "@moonlight-mod/wp/discord/uikit/legacy/Button";
+import TextInput from "@moonlight-mod/wp/discord/uikit/TextInput";
 import React from "@moonlight-mod/wp/react";
 import spacepack from "@moonlight-mod/wp/spacepack_spacepack";
 
@@ -114,7 +114,7 @@ function CloneStickerModal(props: CloneStickerModalProps) {
       getSlotsUsed={(guild) => guildStickers.get(guild.id)?.length ?? 0}
       onClone={async (guild) => {
         const response = await fetch(
-          `https://cdn.discordapp.com/stickers/${props.sticker.id}${props.sticker.format_type === STICKER_FORMAT_TYPES.GIF ? ".gif" : ".png"}?size=4096`,
+          `https://media.discordapp.net/stickers/${props.sticker.id}${props.sticker.format_type === STICKER_FORMAT_TYPES.GIF ? ".gif" : ".png"}?size=4096`,
         );
 
         const blob = await response.blob();
