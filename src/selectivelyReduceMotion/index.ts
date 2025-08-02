@@ -58,6 +58,22 @@ export const patches: ExtensionWebExports["patches"] = [
         '$1.to({$2animate:!moonlight.getConfigOption("selectivelyReduceMotion","scrolling")&&$3})',
     },
   },
+  {
+    find: "--custom-emoji-sprite-size",
+    replace: {
+      match: /\i\.\i\.useReducedMotion/g,
+      replacement:
+        '$&||moonlight.getConfigOption("selectivelyReduceMotion","chatButtons")',
+    },
+  },
+  {
+    find: /\{Component:\i,events:\i,play:\i\}=\(0,\i.\i\)\(\)/g,
+    replace: {
+      match: /\{Component:(\i),events:(\i),play:(\i)\}=(\(0,\i.\i\)\(\))/g,
+      replacement:
+        '{Component:$1,events:_$2,play:_$3\}=$4, sRMC$1 = moonlight.getConfigOption("selectivelyReduceMotion","chatButtons"), $2 = sRMC$1 ? {} : _$2, $3 = sRMC$1 ? {} : _$3',
+    },
+  },
 ];
 
 // https://moonlight-mod.github.io/ext-dev/webpack/#webpack-module-insertion

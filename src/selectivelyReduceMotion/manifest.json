@@ -44,6 +44,12 @@
       "type": "boolean",
       "default": false,
       "advice": "none"
+    },
+    "chatButtons": {
+      "displayName": "Chat Buttons",
+      "type": "boolean",
+      "default": false,
+      "advice": "none"
     }
   }
 }
