@@ -11,7 +11,7 @@
     "authors": ["maddy"],
     "source": "https://github.com/maddymeows/moonlight-exts",
     "tags": ["qol", "accessibility"],
-    "changelog": "1.5: Allow disabling motion for lottie icon buttons\n1.4: allow disabling motion for nameplates\n1.3: allow disabling motion for message confetti\n1.2: allow disabling motion for scrolling animations\n1.1: allow disabling motion for super reactions\n1.0: reduced the motions"
+    "changelog": "1.5: allow disabling motion for lottie icon buttons\n1.4: allow disabling motion for nameplates\n1.3: allow disabling motion for message confetti\n1.2: allow disabling motion for scrolling animations\n1.1: allow disabling motion for super reactions\n1.0: reduced the motions"
   },
   "settings": {
     "avatarDecorations": {
@@ -40,7 +40,7 @@
     },
     "iconButtons": {
       "displayName": "Icon buttons",
-      "description": "All buttons that play animations when you hover them (e.g. mute/defean, sticker picker, gift button)",
+      "description": "All buttons that play animations when you hover them (e.g. mute/deafen, sticker picker, gift button)",
       "type": "boolean",
       "default": false,
       "advice": "none"
