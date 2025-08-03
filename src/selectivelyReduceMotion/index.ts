@@ -63,15 +63,15 @@ export const patches: ExtensionWebExports["patches"] = [
     replace: {
       match: /\i\.\i\.useReducedMotion/g,
       replacement:
-        '$&||moonlight.getConfigOption("selectivelyReduceMotion","chatButtons")',
+        '$&||moonlight.getConfigOption("selectivelyReduceMotion","iconButtons")',
     },
   },
   {
-    find: /\{Component:\i,events:\i,play:\i\}=\(0,\i.\i\)\(\)/g,
+    find: /LottieIcon web entry point/g,
     replace: {
-      match: /\{Component:(\i),events:(\i),play:(\i)\}=(\(0,\i.\i\)\(\))/g,
+      match: /\i\.useContext\(\i\.\i\)\.reducedMotion\.enabled/,
       replacement:
-        '{Component:$1,events:_$2,play:_$3\}=$4, sRMC$1 = moonlight.getConfigOption("selectivelyReduceMotion","chatButtons"), $2 = sRMC$1 ? {} : _$2, $3 = sRMC$1 ? {} : _$3',
+        '$&||moonlight.getConfigOption("selectivelyReduceMotion","iconButtons")',
     },
   },
 ];

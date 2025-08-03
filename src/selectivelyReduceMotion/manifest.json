@@ -38,15 +38,16 @@
       "default": false,
       "advice": "none"
     },
-    "scrolling": {
-      "displayName": "Scrolling",
-      "description": "Includes \"Jump to Present\" button and Page Up/Down keys. Does not include smooth scrolling with the scroll wheel. For disabling scroll wheel animations use the \"No Smooth Scrolling\" extension.",
+    "iconButtons": {
+      "displayName": "Icon buttons",
+      "description": "All buttons that play animations when you hover them (e.g. mute/defean, sticker picker, gift button)",
       "type": "boolean",
       "default": false,
       "advice": "none"
     },
-    "chatButtons": {
-      "displayName": "Chat Buttons",
+    "scrolling": {
+      "displayName": "Scrolling",
+      "description": "Includes \"Jump to Present\" button and Page Up/Down keys. Does not include smooth scrolling with the scroll wheel. For disabling scroll wheel animations use the \"No Smooth Scrolling\" extension.",
       "type": "boolean",
       "default": false,
       "advice": "none"
