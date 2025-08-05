@@ -1,0 +1,14 @@
+{
+  "$schema": "https://moonlight-mod.github.io/manifest.schema.json",
+  "id": "showNote",
+  "version": "1.0.0",
+  "apiLevel": 2,
+  "dependencies": ["common", "spacepack"],
+  "meta": {
+    "name": "Show Note",
+    "tagline": "Puts a dedicated note section in the user profiles",
+    "authors": ["maddy"],
+    "source": "https://github.com/maddymeows/moonlight-exts",
+    "tags": ["qol"]
+  }
+}

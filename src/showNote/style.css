@@ -1,0 +1,13 @@
+.moonlight-showNote {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.moonlight-showNote-sidebar {
+  gap: 8px;
+}
+
+.moonlight-showNote-text {
+  white-space: break-spaces;
+}
