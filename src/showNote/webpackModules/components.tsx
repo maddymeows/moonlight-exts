@@ -1,10 +1,27 @@
-import { NoteStore } from "@moonlight-mod/wp/common_stores";
-import {
-  Text,
-  Heading,
-} from "@moonlight-mod/wp/discord/components/common/index";
-import { useStateFromStores } from "@moonlight-mod/wp/discord/packages/flux";
-import React from "@moonlight-mod/wp/react";
+import { Heading } from "@moonlight-mod/wp/discord/components/common/index";
+import React, { lazy, Suspense } from "@moonlight-mod/wp/react";
+import spacepack from "@moonlight-mod/wp/spacepack_spacepack";
+
+const intl = spacepack.require("discord/intl");
+
+const NoteInput = lazy(async () => {
+  await spacepack.lazyLoad(
+    '"USER_PROFILE_MODAL_KEY:"' + ".concat",
+    /n\.e\("(\d+)"\)/g,
+    /n\.bind\(n,(\d+)\)/,
+  );
+
+  return {
+    default: spacepack.findByCode(
+      /"aria-label":\i\.intl\.string\(\i\.t\.PbMNh4\)/,
+    )[0].exports.Z as React.ComponentType<{
+      userId: string;
+      className: string;
+    }>,
+  };
+});
+
+let profileNoteClassName = "";
 
 type NoteProps = {
   user: string;
@@ -12,26 +29,30 @@ type NoteProps = {
 };
 
 export function Note(props: NoteProps) {
-  const note = useStateFromStores([NoteStore], () =>
-    props.user ? NoteStore.getNote(props.user) : undefined,
-  );
-  if (!note || note.loading || !note.note) return null;
-
   let className = "moonlight-showNote";
-  if (props.className) className += " " + props.className;
+  if (props.className) className += ` ${props.className}`;
+
+  if (!profileNoteClassName) {
+    profileNoteClassName = spacepack.findByCode(
+      "profileNote:" + '"profileNote_',
+    )[0].exports.profileNote;
+  }
 
   return (
-    <section className={className}>
-      <Heading
-        variant="text-xs/semibold"
-        className="moonlight-showNote-heading"
-      >
-        Note
-      </Heading>
-      <Text variant="text-sm/normal" className="moonlight-showNote-text">
-        {note.note}
-      </Text>
-    </section>
+    <Suspense>
+      <section className={className}>
+        <Heading
+          variant="text-xs/semibold"
+          className="moonlight-showNote-heading"
+        >
+          {intl.intl.string(intl.t["mQKv+v"])}
+        </Heading>
+        <NoteInput
+          userId={props.user}
+          className={`${profileNoteClassName} moonlight-showNote-text`}
+        />
+      </section>
+    </Suspense>
   );
 }
 

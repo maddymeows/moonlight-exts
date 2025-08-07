@@ -26,10 +26,11 @@ export const patches: ExtensionWebExports["patches"] = [
 export const webpackModules: ExtensionWebExports["webpackModules"] = {
   components: {
     dependencies: [
+      '"USER_PROFILE_MODAL_KEY:"',
       { id: "discord/components/common/index" },
-      { id: "discord/packages/flux" },
+      { id: "discord/intl" },
       { id: "react" },
-      { ext: "common", id: "stores" },
+      { ext: "spacepack", id: "spacepack" },
     ],
   },
 };

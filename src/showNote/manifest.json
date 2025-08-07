@@ -1,9 +1,9 @@
 {
   "$schema": "https://moonlight-mod.github.io/manifest.schema.json",
   "id": "showNote",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "apiLevel": 2,
-  "dependencies": ["common", "spacepack"],
+  "dependencies": ["common"],
   "meta": {
     "name": "Show Note",
     "tagline": "Puts a dedicated note section in the user profiles",

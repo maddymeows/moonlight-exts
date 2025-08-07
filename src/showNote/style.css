@@ -9,5 +9,9 @@
 }
 
 .moonlight-showNote-text {
-  white-space: break-spaces;
+  margin: -5px;
+}
+
+.moonlight-showNote-text textarea {
+  font-weight: var(--font-weight-normal);
 }
