@@ -67,11 +67,19 @@ export const patches: ExtensionWebExports["patches"] = [
     },
   },
   {
-    find: /LottieIcon web entry point/g,
+    find: "LottieIcon web entry point",
     replace: {
       match: /\i\.useContext\(\i\.\i\)\.reducedMotion\.enabled/,
       replacement:
         '$&||moonlight.getConfigOption("selectivelyReduceMotion","iconButtons")',
+    },
+  },
+  {
+    find: '"--custom-gradient-color-1":',
+    replace: {
+      match: /let(\{[^}]*useReducedMotion:[^}]*})=(\i)/,
+      replacement:
+        'let$1={...$2,useReducedMotion:$2.useReducedMotion||moonlight.getConfigOption("selectivelyReduceMotion","roleGradients"),includeConvenienceGlow:$2.includeConvenienceGlow&&!moonlight.getConfigOption("selectivelyReduceMotion","roleGlows")}',
     },
   },
 ];
