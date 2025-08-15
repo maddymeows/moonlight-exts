@@ -79,7 +79,7 @@ export const patches: ExtensionWebExports["patches"] = [
     replace: {
       match: /let(\{[^}]*useReducedMotion:[^}]*})=(\i)/,
       replacement:
-        'let$1={...$2,useReducedMotion:$2.useReducedMotion||moonlight.getConfigOption("selectivelyReduceMotion","roleGradients"),includeConvenienceGlow:$2.includeConvenienceGlow&&!moonlight.getConfigOption("selectivelyReduceMotion","roleGlows")}',
+        'let$1={...$2,useReducedMotion:$2.useReducedMotion||moonlight.getConfigOption("selectivelyReduceMotion","roleGradients"),animateGradient:$2.animateGradients&&!moonlight.getConfigOption("selectivelyReduceMotion","roleGradients"),includeConvenienceGlow:$2.includeConvenienceGlow&&!moonlight.getConfigOption("selectivelyReduceMotion","roleGlows")}',
     },
   },
 ];
