@@ -19,7 +19,7 @@ import React from "@moonlight-mod/wp/react";
 import spacepack from "@moonlight-mod/wp/spacepack_spacepack";
 
 const GuildIcon = spacepack.findByCode(`SMOL:${JSON.stringify("Smol")},`)[0]
-  .exports.A;
+  .exports.Ay;
 
 export type Guild = {
   id: string;
