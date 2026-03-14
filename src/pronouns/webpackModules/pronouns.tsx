@@ -10,6 +10,7 @@ type PronounsProps = {
       id: string;
     };
   };
+  roleIcon?: React.ReactNode;
 };
 
 function Pronouns(props: PronounsProps): React.ReactNode {
@@ -26,6 +27,9 @@ function Pronouns(props: PronounsProps): React.ReactNode {
 
   if (!pronouns) return null;
 
+  const delimiter = moonlight.getConfigOption<string>("pronouns", "delimiter");
+  const addDelimiter = delimiter !== "None";
+
   return (
     <span className="pronouns-badge">
       <span style={{ position: "absolute", opacity: 0, zIndex: -1 }}>
@@ -35,6 +39,14 @@ function Pronouns(props: PronounsProps): React.ReactNode {
       <span style={{ position: "absolute", opacity: 0, zIndex: -1 }}>
         {")"}
       </span>
+      {addDelimiter && (
+        <span
+          className="pronouns-delimiter"
+          data-has-role-icon={props.roleIcon ? true : undefined}
+        >
+          {delimiter}
+        </span>
+      )}
     </span>
   );
 }
