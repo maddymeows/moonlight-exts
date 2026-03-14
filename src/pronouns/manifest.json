@@ -13,19 +13,12 @@
     "changelog": "1.3: add delimiter settings\n1.2: support compact mode\n1.1: cache pronouns\n1.0: the invention of pronouns"
   },
   "settings": {
-    "addDelimiter": {
-      "displayName": "Add delimiter",
-      "description": "Whether to add a delimiter between the name and the pronouns",
-      "type": "boolean",
-      "default": false,
-      "advice": "none"
-    },
     "delimiter": {
       "displayName": "Delimiter",
       "description": "The delimiter to use between the name and the pronouns",
       "type": "select",
-      "options": [ "•", "-", "—", "~" ],
-      "default": "•",
+      "options": ["None", "•", "-", "—", "~"],
+      "default": "None",
       "advice": "none"
     }
   }
