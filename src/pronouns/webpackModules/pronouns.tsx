@@ -29,7 +29,6 @@ function Pronouns(props: PronounsProps): React.ReactNode {
 
   const delimiter = moonlight.getConfigOption<string>("pronouns", "delimiter");
   const addDelimiter = delimiter !== "None";
-  const delimiterMarginRight = !!props.roleIcon ? "0" : "-0.25rem";
 
   return (
     <span className="pronouns-badge">
@@ -43,7 +42,7 @@ function Pronouns(props: PronounsProps): React.ReactNode {
       {addDelimiter && (
         <span
           className="pronouns-delimiter"
-          style={{ marginRight: delimiterMarginRight }}
+          data-has-role-icon={props.roleIcon ? true : undefined}
         >
           {delimiter}
         </span>
