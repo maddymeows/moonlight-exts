@@ -6,8 +6,8 @@ export const patches: ExtensionWebExports["patches"] = [
     find: ".EMOJI_UPSELL_POPOUT_MORE_EMOJIS_OPENED,",
     replace: {
       match:
-        /return(\(0,\i\.jsxs\)\("div",\{className:\i\.\i,children:\[\(0,\i\.jsxs\)\(\i\.\i,\{children:\[\(0,\i.jsx\)\(\i\.\i,\{className:\i\.\i,emojiId:)/,
-      replacement: 'return require("cloneExpressions_emoji").injectPopout$1',
+        /\i=\i\.type===\i\.\i\.JOIN_GUILD,\i=\i\.type===\i\.\i\.GET_PREMIUM,[^;]*;return/,
+      replacement: '$& require("cloneExpressions_emoji").injectPopout',
     },
   },
   {
@@ -27,8 +27,11 @@ export const webpackModules: ExtensionWebExports["webpackModules"] = {
   core: {
     dependencies: [
       'SMOL:"Smol",',
-      { id: "discord/components/common/index" },
+      '"vertical",' + "paddingFix:",
       { id: "discord/Constants" },
+      { id: "discord/design/components/Heading/Heading" },
+      { id: "discord/design/components/Modal/web/LegacyModal" },
+      { id: "discord/design/components/Text/Text" },
       { id: "discord/packages/flux" },
       { id: "discord/uikit/legacy/Button" },
       { id: "react" },
@@ -39,7 +42,7 @@ export const webpackModules: ExtensionWebExports["webpackModules"] = {
   emoji: {
     dependencies: [
       '.dispatch({type:"EMOJI_UPLOAD_START",',
-      { id: "discord/components/common/index" },
+      { id: "discord/design/components/Form/web/Field" },
       { id: "discord/modules/modals/Modals" },
       { id: "discord/packages/flux" },
       { id: "discord/uikit/legacy/Button" },
@@ -55,7 +58,8 @@ export const webpackModules: ExtensionWebExports["webpackModules"] = {
   sticker: {
     dependencies: [
       '.dispatch({type:"GUILD_STICKERS_CREATE_SUCCESS",',
-      { id: "discord/components/common/index" },
+      { id: "discord/design/components/Form/web/Field" },
+      { id: "discord/design/mana/components/TextArea/web/TextArea" },
       { id: "discord/modules/modals/Modals" },
       { id: "discord/packages/flux" },
       { id: "discord/uikit/legacy/Button" },

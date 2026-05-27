@@ -3,7 +3,7 @@ import { EmojiStore } from "@moonlight-mod/wp/common_stores";
 import ContextMenu, {
   MenuItem,
 } from "@moonlight-mod/wp/contextMenu_contextMenu";
-import { FormItem } from "@moonlight-mod/wp/discord/components/common/index";
+import Field from "@moonlight-mod/wp/discord/design/components/Form/web/Field";
 import { openModal } from "@moonlight-mod/wp/discord/modules/modals/Modals";
 import {
   statesWillNeverBeEqual,
@@ -60,20 +60,19 @@ function CloneEmojiModal(props: CloneEmojiModalProps) {
       {...props}
       title="Clone Emoji"
       footer={
-        <FormItem
-          title="Name"
+        <Field
+          label="Name"
           required
-          error={
+          errorMessage={
             /\W/.test(name)
               ? "Name can only contain alphanumeric characters or underscores"
               : 2 > name.length || name.length > 32
                 ? "Name must be between 2 and 32 characters long"
                 : undefined
           }
-          style={{ flexGrow: "1" }}
         >
           <TextInput value={name} onChange={setName} />
-        </FormItem>
+        </Field>
       }
       getSlotsCount={(guild) => EMOJI_SLOTS_PER_TIER[guild.premiumTier]}
       getSlotsUsed={(guild) =>
@@ -119,9 +118,9 @@ export function injectPopout(
     const element = jsxs(...args);
 
     const { emojiId, emojiName, animated } =
-      element.props.children[0].props.children[0].props;
+      element.props.children[0].props.children[0].props.children[0].props;
 
-    element.props.children.push(
+    element.props.children[0].props.children.push(
       <Button
         size={Button.Sizes.SMALL}
         fullWidth

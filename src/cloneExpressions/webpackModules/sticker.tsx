@@ -3,10 +3,8 @@ import { StickersStore } from "@moonlight-mod/wp/common_stores";
 import ContextMenu, {
   MenuItem,
 } from "@moonlight-mod/wp/contextMenu_contextMenu";
-import {
-  FormItem,
-  TextArea,
-} from "@moonlight-mod/wp/discord/components/common/index";
+import Field from "@moonlight-mod/wp/discord/design/components/Form/web/Field";
+import TextArea from "@moonlight-mod/wp/discord/design/mana/components/TextArea/web/TextArea";
 import { openModal } from "@moonlight-mod/wp/discord/modules/modals/Modals";
 import { useStateFromStores } from "@moonlight-mod/wp/discord/packages/flux";
 import { Button } from "@moonlight-mod/wp/discord/uikit/legacy/Button";
@@ -75,31 +73,31 @@ function CloneStickerModal(props: CloneStickerModalProps) {
             gap: "16px",
           }}
         >
-          <FormItem
-            title="Name"
+          <Field
+            label="Name"
             required
-            error={
+            errorMessage={
               2 > name.length || name.length > 32
                 ? "Name must be between 2 and 32 characters long"
                 : undefined
             }
           >
             <TextInput value={name} onChange={setName} />
-          </FormItem>
-          <FormItem
-            title="Tags"
+          </Field>
+          <Field
+            label="Tags"
             required
-            error={
+            errorMessage={
               tags.length > 200
                 ? "Tags must not be longer than 200 characters"
                 : undefined
             }
           >
             <TextInput value={tags} onChange={setTags} />
-          </FormItem>
-          <FormItem
-            title="Description"
-            error={
+          </Field>
+          <Field
+            label="Description"
+            errorMessage={
               description.length !== 0 &&
               (2 > description.length || description.length > 100)
                 ? "Description must be between 2 and 100 characters long"
@@ -107,7 +105,7 @@ function CloneStickerModal(props: CloneStickerModalProps) {
             }
           >
             <TextArea value={description} onChange={setDescription} />
-          </FormItem>
+          </Field>
         </div>
       }
       getSlotsCount={(guild) => STICKER_SLOTS_PER_TIER[guild.premiumTier]}

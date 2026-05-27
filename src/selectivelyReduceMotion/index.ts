@@ -5,13 +5,13 @@ export const patches: ExtensionWebExports["patches"] = [
   {
     find: /\{canAnimate:\i}=/,
     replace: {
-      match: /\{canAnimate:(\i)}=(\(0,\i\.\i\)\(\i,\i\))/,
+      match: /\{canAnimate:(\i)}}/,
       replacement:
-        '$1=$2.canAnimate&&!moonlight.getConfigOption("selectivelyReduceMotion","avatarDecorations")',
+        '{canAnimate:$1&&!moonlight.getConfigOption("selectivelyReduceMotion","avatarDecorations")}}',
     },
   },
   {
-    find: /\{[^}]*autoPlay:\i[^}]*profileEffectConfig:\i[^}]*}=/,
+    find: /\{[^}]*autoPlay:\i[^}]*profileEffect:\i[^}]*}=/,
     replace: {
       match: /\(0,\i\.\i\)\(\[\i\.\i],\(\)=>\i\.\i\.useReducedMotion\)/,
       replacement:
@@ -19,7 +19,7 @@ export const patches: ExtensionWebExports["patches"] = [
     },
   },
   {
-    find: /\{staticAsset:\i,animatedAsset:\i}=/,
+    find: /\{staticImageUrl:\i,animatedImageUrl:\i,videoUrl:\i}=/,
     replace: {
       match: /animate:(\i),loop:!0===\1&&!0===(\i)/,
       replacement:
@@ -51,7 +51,7 @@ export const patches: ExtensionWebExports["patches"] = [
     },
   },
   {
-    find: "LottieIcon web entry point",
+    find: '("lottie_hover_multiple_loop")',
     replace: {
       match: /\i\.useContext\(\i\.\i\)\.reducedMotion\.enabled/,
       replacement:

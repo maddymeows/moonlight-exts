@@ -12,10 +12,8 @@ export const patches: ExtensionWebExports["patches"] = [
   {
     find: "videoLimit:",
     replace: {
-      match:
-        /\{className:(\i\(\)\(\i\.total,\{\[\i\.extraLong]:\i>=100}\)),children:(\i)\.toString\(\)\.padStart\(2,"0"\)}/,
-      replacement:
-        '{className:$1,children:$2>0?$2.toString().padStart(2,"0"):"\\u221e"}',
+      match: /children:(\i)\.toString\(\)\.padStart\(2,"0"\)/,
+      replacement: 'children:$1>0?$1.toString().padStart(2,"0"):"\\u221e"',
     },
   },
 ];

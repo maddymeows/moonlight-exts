@@ -1,12 +1,11 @@
-import { Heading } from "@moonlight-mod/wp/discord/components/common/index";
+import Heading from "@moonlight-mod/wp/discord/design/components/Heading/Heading";
 import React, { lazy, Suspense } from "@moonlight-mod/wp/react";
 import spacepack from "@moonlight-mod/wp/spacepack_spacepack";
-
-const intl = spacepack.require("discord/intl");
+import intl from "@moonlight-mod/wp/discord/intl";
 
 const NoteInput = lazy(async () => {
   await spacepack.lazyLoad(
-    '"USER_PROFILE_MODAL_KEY:"' + ".concat",
+    "USER_PROFILE_MODAL_KEY",
     /n\.e\("(\d+)"\)/g,
     /n\.bind\(n,(\d+)\)/,
   );
@@ -37,7 +36,10 @@ export function Note(props: NoteProps) {
           variant="text-xs/semibold"
           className="moonlight-showNote-heading"
         >
-          {intl.intl.string(intl.t["mQKv+v"])}
+          {
+            // @ts-expect-error whatever
+            intl.intl.string(intl.t["mQKv+v"])
+          }
         </Heading>
         <NoteInput
           userId={props.user}
@@ -49,6 +51,7 @@ export function Note(props: NoteProps) {
 }
 
 export function injectPopout(
+  _: unknown,
   jsxs: (...args: unknown[]) => React.ReactElement<any>,
 ) {
   return (...args: unknown[]) => {
@@ -68,6 +71,7 @@ export function injectPopout(
 }
 
 export function injectSidebar(
+  _: unknown,
   jsxs: (...args: unknown[]) => React.ReactElement<any>,
 ) {
   return (...args: unknown[]) => {

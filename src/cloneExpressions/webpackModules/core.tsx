@@ -3,16 +3,15 @@ import {
   PermissionStore,
   SortedGuildStore,
 } from "@moonlight-mod/wp/common_stores";
+import { Permissions } from "@moonlight-mod/wp/discord/Constants";
+import Heading from "@moonlight-mod/wp/discord/design/components/Heading/Heading";
 import {
-  Heading,
   ModalCloseButton,
   ModalFooter,
   ModalHeader,
   ModalRoot,
-  Scroller,
-  Text,
-} from "@moonlight-mod/wp/discord/components/common/index";
-import { Permissions } from "@moonlight-mod/wp/discord/Constants";
+} from "@moonlight-mod/wp/discord/design/components/Modal/web/LegacyModal";
+import Text from "@moonlight-mod/wp/discord/design/components/Text/Text";
 import { useStateFromStores } from "@moonlight-mod/wp/discord/packages/flux";
 import { Button } from "@moonlight-mod/wp/discord/uikit/legacy/Button";
 import React from "@moonlight-mod/wp/react";
@@ -20,6 +19,10 @@ import spacepack from "@moonlight-mod/wp/spacepack_spacepack";
 
 const GuildIcon = spacepack.findByCode(`SMOL:${JSON.stringify("Smol")},`)[0]
   .exports.Ay;
+
+const Scroller = Object.values(
+  spacepack.findByCode('"vertical",' + "paddingFix:")[0].exports,
+)[0] as any;
 
 export type Guild = {
   id: string;
@@ -68,7 +71,7 @@ export function CloneExpressionModal(props: CloneExpressionModalProps) {
               height: "48px",
               display: "flex",
               alignItems: "center",
-              padding: "0 16px",
+              padding: "0 var(--modal-horizontal-padding)",
             }}
           >
             <GuildIcon guild={guild} size={GuildIcon.Sizes.SMALL} />

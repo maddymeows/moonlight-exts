@@ -3,20 +3,21 @@ import { ExtensionWebExports } from "@moonlight-mod/types";
 // https://moonlight-mod.github.io/ext-dev/webpack/#patching
 export const patches: ExtensionWebExports["patches"] = [
   {
-    find: 'location:"UserProfilePopoutBody"',
+    find: 'layout:"POPOUT"',
     replace: [
       {
-        match: /return\(0,(\i\.jsxs)\)/,
-        replacement: 'return require("showNote_components").injectPopout($1)',
+        match: /\(\i\.id,\i\?\.id\);return/,
+        replacement: '$& require("showNote_components").injectPopout',
       },
     ],
   },
   {
-    find: '.t.a6XYD9),headingColor:"text-strong",children:(0,',
+    find: '["high","medium","low"]',
     replace: [
       {
-        match: /return\(0,(\i\.jsxs)\)/,
-        replacement: 'return require("showNote_components").injectSidebar($1)',
+        match:
+          /\i=\(0,\i\.\i\)\(\[\i\.\i],\(\)=>\i\.\i\.hidePersonalInformation\)[^;]*;return/,
+        replacement: '$& require("showNote_components").injectSidebar',
       },
     ],
   },
@@ -26,8 +27,8 @@ export const patches: ExtensionWebExports["patches"] = [
 export const webpackModules: ExtensionWebExports["webpackModules"] = {
   components: {
     dependencies: [
-      '"USER_PROFILE_MODAL_KEY:"',
-      { id: "discord/components/common/index" },
+      "USER_PROFILE_MODAL_KEY",
+      { id: "discord/design/components/Heading/Heading" },
       { id: "discord/intl" },
       { id: "react" },
       { ext: "spacepack", id: "spacepack" },

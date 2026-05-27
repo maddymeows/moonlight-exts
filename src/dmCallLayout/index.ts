@@ -27,30 +27,11 @@ export const patches: ExtensionWebExports["patches"] = [
     ],
   },
   {
-    find: '"ChannelChat"',
-    replace: [
-      {
-        match: /\.memo\(function\((\i)\)\{/,
-        replacement:
-          '$&let _moonlight_dmCallLayout_shouldRenderChat=require("discord/packages/flux").useStateFromStores([require("common_stores").ChannelRTCStore],()=>require("common_stores").ChannelRTCStore.getLayout($1.channel.id)==="normal"||$1.chatInputType.analyticsName!=="normal");',
-      },
-      {
-        match: /\(0,\i\.jsx\)\(\i,\{channel:\i,/,
-        replacement: "$&_moonlight_dmCallLayout_shouldRenderChat,",
-      },
-      {
-        match: /render\(\)\{(let \i,\{channel:[^}]+})/,
-        replacement:
-          "render(){if(this.props._moonlight_dmCallLayout_shouldRenderChat===false)return null;$1",
-      },
-    ],
-  },
-  {
     find: '"Missing channel in Channel.renderChat"',
     replace: [
       {
         match:
-          /if\((\i)\.isGuildVocal\(\)\|\|(\i&&\i.isVocalThread\(\))\)return null;/,
+          /if\((\i)\.isGuildVocal\(\)\|\|(\i&&\i.isVocalThread\(\)&&\i)\)return null;/,
         replacement:
           "if($1.isGuildVocal()&&!$1.isGuildVoice()||$2)return null;",
       },

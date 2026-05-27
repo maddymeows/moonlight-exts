@@ -3,7 +3,7 @@ import { ExtensionWebExports } from "@moonlight-mod/types";
 // https://moonlight-mod.github.io/ext-dev/webpack/#patching
 export const patches: ExtensionWebExports["patches"] = [
   {
-    find: '?"cmd":"ctrl"',
+    find: '.indexOf("any-character")',
     replace: {
       match:
         /function (\i)\((\i),(\i)\)\{return\([^)]+\)=>\(\i\.default\.track\([^)]+\),\3\([^)]+\)\)}/,
