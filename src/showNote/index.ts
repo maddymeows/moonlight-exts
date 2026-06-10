@@ -6,8 +6,8 @@ export const patches: ExtensionWebExports["patches"] = [
     find: 'layout:"POPOUT"',
     replace: [
       {
-        match: /\(\i\.id,\i\?\.id\);return/,
-        replacement: '$& require("showNote_components").injectPopout',
+        match: /return(\(0,\i\.jsxs\)\(\i.\i,\{fade:!0,)/,
+        replacement: 'return require("showNote_components").injectPopout$1',
       },
     ],
   },

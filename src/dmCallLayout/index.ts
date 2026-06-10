@@ -31,7 +31,7 @@ export const patches: ExtensionWebExports["patches"] = [
     replace: [
       {
         match:
-          /if\((\i)\.isGuildVocal\(\)\|\|(\i&&\i.isVocalThread\(\)&&\i)\)return null;/,
+          /if\((\i)\.isGuildVocal\(\)\|\|(\i.isVocalThread\(\)&&\i)\)return null;/,
         replacement:
           "if($1.isGuildVocal()&&!$1.isGuildVoice()||$2)return null;",
       },
