@@ -17,12 +17,32 @@ import { Button } from "@moonlight-mod/wp/discord/uikit/legacy/Button";
 import React from "@moonlight-mod/wp/react";
 import spacepack from "@moonlight-mod/wp/spacepack_spacepack";
 
-const GuildIcon = spacepack.findByCode(`SMOL:${JSON.stringify("Smol")},`)[0]
-  .exports.Ay;
+function findExport<T>(finds: string[], pick?: (value: any) => boolean): T | undefined {
+  const mod = spacepack.findByCode(...finds)[0];
+  if (mod == null) return undefined;
 
-const Scroller = Object.values(
-  spacepack.findByCode('"vertical",' + "paddingFix:")[0].exports,
-)[0] as any;
+  const values = Object.values(mod.exports ?? {});
+  return (pick != null ? values.find(pick) : values[0]) as T | undefined;
+}
+
+const guildIconFind = [`SMOL:${JSON.stringify("Smol")},`];
+const GuildIcon =
+  findExport<any>(guildIconFind, (value) => value?.Sizes != null) ??
+  findExport<any>(guildIconFind, (value) => typeof value === "function");
+
+
+const FoundScroller = findExport<any>(
+  ['"vertical"', "scrollbarGutter:", "customTheme:"],
+  (value) => typeof value === "object" || typeof value === "function",
+);
+
+const FallbackScroller = ({ children, ...props }: any) => (
+  <div style={{ overflowY: "auto", maxHeight: "100%" }} {...props}>
+    {children}
+  </div>
+);
+
+const Scroller = (FoundScroller ?? FallbackScroller) as any;
 
 export type Guild = {
   id: string;
@@ -74,7 +94,7 @@ export function CloneExpressionModal(props: CloneExpressionModalProps) {
               padding: "0 var(--modal-horizontal-padding)",
             }}
           >
-            <GuildIcon guild={guild} size={GuildIcon.Sizes.SMALL} />
+            <GuildIcon guild={guild} size={GuildIcon?.Sizes?.SMALL} />
             <div
               style={{
                 flexGrow: "1",

@@ -7,7 +7,8 @@ export const patches: ExtensionWebExports["patches"] = [
     replace: {
       match:
         /\i=\i\.type===\i\.\i\.JOIN_GUILD,\i=\i\.type===\i\.\i\.GET_PREMIUM,[^;]*;return/,
-      replacement: '$& require("cloneExpressions_emoji").injectPopout',
+      replacement:
+        '$& (require("cloneExpressions_emoji")?.injectPopout??(_ce=>_ce))',
     },
   },
   {
@@ -16,7 +17,8 @@ export const patches: ExtensionWebExports["patches"] = [
       {
         match:
           /(\(0,\i\.jsxs\)\("div",\{className\:\i\.\i,children:\[\(0,\i.jsx\)\(\i,\{description:\i,sticker:)/,
-        replacement: ' require("cloneExpressions_sticker").injectPopout$1',
+        replacement:
+          ' (require("cloneExpressions_sticker")?.injectPopout??(_ce=>_ce))$1',
       },
     ],
   },
@@ -27,7 +29,7 @@ export const webpackModules: ExtensionWebExports["webpackModules"] = {
   core: {
     dependencies: [
       'SMOL:"Smol",',
-      '"vertical",' + "paddingFix:",
+      "scrollbarGutter:",
       { id: "discord/Constants" },
       { id: "discord/design/components/Heading/Heading" },
       { id: "discord/design/components/Modal/web/LegacyModal" },
